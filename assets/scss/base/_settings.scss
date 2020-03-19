@@ -1,6 +1,6 @@
 // Base:
-$global-width: rem(1360);
-$body-font-family: 'adelle', serif;
+$global-width: rem(1100);
+$body-font-family: 'Lato', sans-serif;
 
 // Breakpoints:
 $breakpoints: (
@@ -15,7 +15,7 @@ $breakpoint-classes: (small medium large xxlarge);
 
 // Grid:
 $grid-column-gutter: (
-  small: 30px,
-  medium: 35px,
-  large: 35px
+  small: 16px,
+  medium: 16px,
+  large: 16px
 );
