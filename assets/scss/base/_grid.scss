@@ -1,0 +1,11 @@
+@import "settings";
+@import '~foundation-sites/scss/foundation';
+@include foundation-normalize;
+@include foundation-flex-grid;
+@include -zf-each-breakpoint {
+  @for $i from 1 through $flex-source-ordering-count {
+    .#{$-zf-size}-order-#{$i} {
+      @include flex-order($i);
+    }
+  }
+}

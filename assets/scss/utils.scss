@@ -1,0 +1,115 @@
+// Utils | Repeatable:
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: proxima-nova, sans-serif;
+  font-size: rem(15px);
+  font-weight: 400;
+  line-height: 1.27;
+  margin: 0;
+  padding: 0;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: black;
+}
+
+a,
+button {
+  color: inherit;
+  outline: none;
+}
+
+button {
+  background: transparent;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-center-mobile {
+  text-align: center;
+
+  @include desktop {
+    text-align: left;
+  }
+}
+
+.text-center-desktop {
+  @include desktop {
+    text-align: center;
+  }
+}
+
+.text-right-desktop {
+  @include desktop {
+    text-align: right;
+  }
+}
+
+.relative {
+  position: relative;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.hide-small {
+  display: none;
+
+  @include desktop {
+    display: block;
+  }
+}
+
+.hide-tablet {
+  @include tablet {
+    display: none;
+  }
+}
+
+.hide-until-tablet {
+  display: none;
+
+  @include tablet {
+    display: initial;
+  }
+}
+
+.hide-large {
+  @include desktop {
+    display: none;
+  }
+}
+
+.page-padding-top {
+  padding-top: 100px;
+
+  @include tablet {
+    padding-top: 50px;
+  }
+  
+  @include desktop {
+    padding-top: 130px;
+  }
+}

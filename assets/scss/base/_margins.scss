@@ -1,0 +1,14 @@
+@for $i from 0 through 10 {
+  .margin-tp-#{$i} {
+    margin-top: 10px * $i;
+  }
+  .margin-bt-#{$i} {
+    margin-bottom: 10px * $i;
+  }
+  .margin-rt-#{$i} {
+    margin-right: 10px * $i;
+  }
+  .margin-both-#{$i} {
+    margin: 10px * $i auto 10px * $i;
+  }
+}
