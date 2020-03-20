@@ -1,12 +1,12 @@
 <template functional>
-  <nuxt-link class="thumb" :class="{ 'line' : props.first }" :to="`/komunikaty/${props.post.slug}`">
+  <nuxt-link class="thumb" :class="{ 'line' : props.first }" :to="`/komunikaty/${props.post.slug}`" :title="`Czytaj: ${props.post.title}`">
     <div class="thumb__date">
       <img src="~/assets/img/icons/calendar.svg" alt="Ikona kalendrza">
       <p>{{ props.post.date }}</p>
     </div>
     <p class="thumb__title">{{ props.post.title }}</p>
     <div class="thumb__image">
-      <img :src="props.post.featured_image" alt="">
+      <img :src="props.post.featured_image" :alt="props.post.featured_image_alt">
     </div>
     <div class="thumb__excerpt" v-html="props.post.excerpt"></div>
   </nuxt-link>

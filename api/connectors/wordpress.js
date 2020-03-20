@@ -14,11 +14,12 @@ export default class WordPressApi {
       transformedPost = {
         id: post.id,
         title: post.title.rendered,
-        date: post.date,
+        date: this.dateFormated(post.date),
         slug: post.slug,
         content: post.content.rendered,
         excerpt: post.excerpt.rendered,
         featured_image: post.featured_media > 0 ? post._embedded['wp:featuredmedia'][0].source_url : null,
+        featured_image_alt: post.featured_media > 0 ? post._embedded['wp:featuredmedia'][0].alt : null,
         map: post.czk_map,
         form: post.czk_form,
       }
@@ -51,5 +52,19 @@ export default class WordPressApi {
 
       return linkObj;
     });
+  }
+
+  dateFormated(date) {
+    if (date) {
+      const dateObj = new Date(date);
+      const options = {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      }
+      return dateObj.toLocaleDateString('pl-PL', options)
+    }
   }
 }
