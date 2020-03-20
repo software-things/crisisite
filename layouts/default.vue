@@ -6,7 +6,7 @@
       <div class="columns large-3 layout__navigation">
         <Navigation />
       </div>
-      <div class="columns small-12 large-9">
+      <div class="columns small-12 large-8">
         <nuxt />
       </div>
     </div>

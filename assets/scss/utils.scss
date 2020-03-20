@@ -101,3 +101,17 @@ a {
     display: none;
   }
 }
+
+.title {
+  font-size: rem(24px);
+  font-weight: 700;
+  margin-bottom: 10px;
+
+  @include desktop {
+    font-size: rem(30px);
+  }
+}
+
+.line {
+  border-bottom: 1px solid #DDDDDD;
+}

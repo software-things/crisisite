@@ -1,8 +1,8 @@
 <template>
   <div class="index">
     <div class="row">
-      <div class="columns small-4 small-offset-4">
-        covid-19
+      <div class="columns small-12 line">
+        <h1 class="title">Komunikaty</h1>
       </div>
     </div>
   </div>

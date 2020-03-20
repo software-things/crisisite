@@ -24,7 +24,7 @@
 
 <style lang="scss">
 .footer {
-  border-top: 3px solid #F4F4F4;
+  border-top: 2px solid #F4F4F4;
   margin-top: 50px;
 
   &__contact {
