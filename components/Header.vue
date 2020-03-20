@@ -77,7 +77,9 @@ export default {
     display: flex;
     align-items: center;
     font-weight: 700;
-    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 
     @include desktop {
       justify-content: flex-end;

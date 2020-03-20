@@ -1,7 +1,7 @@
 <template>
   <nav class="navigation">
     <ul class="navigation__menu">
-      <li v-for="(item, index) in menu" :key="index">
+      <li v-for="item in menu" :key="item.ID">
         <nuxt-link class="navigation__element" @click.native="emitClosure" :to="item.slug">{{ item.name }}</nuxt-link>
       </li>
     </ul>
@@ -9,49 +9,24 @@
 </template>
 
 <script>
+import API from '../api/connectors/wordpress';
 export default {
   data() {
     return {
-      menu: [
-        {
-          name: 'Komunikaty',
-          slug: '/'
-        },
-        {
-          name: 'Objawy koronawirusa',
-          slug: '/'
-        },
-        {
-          name: 'Zasady postępowania',
-          slug: '/'
-        },
-        {
-          name: 'Oddziały zakaźne',
-          slug: '/'
-        },
-        {
-          name: 'Jedzenie na wynos',
-          slug: '/'
-        },
-        {
-          name: 'Wolontariat',
-          slug: '/'
-        },
-        {
-          name: 'Wsparcie osób starszych',
-          slug: '/'
-        },
-        {
-          name: 'Dane kontaktowe',
-          slug: '/'
-        }
-      ]
+      menu: null
     }
   },
   methods:{
     emitClosure() {
       this.$emit('navigation-clicked', false);
     }
+  },
+  mounted() {
+    let api = new API(this.$axios);
+    let menu = api.getMainMenu();
+    menu.then((resp) => {
+      this.menu = resp
+    })
   }
 }
 </script>
@@ -63,13 +38,12 @@ export default {
   left: 0;
   width: 100%;
   background: $special-bg;
-  z-index: 99;
   padding: 60px 0;
 
   @include desktop {
     position: inherit;
     width: 100%;
-    height: inherit;
+    height: auto;
     padding: 20px 0;
     margin-top: 15px;
   }

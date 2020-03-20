@@ -38,6 +38,7 @@ export default {
 
     @include desktop {
       display: flex;
+      height: 100%;
     }
   }
 }

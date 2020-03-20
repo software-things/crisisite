@@ -7,20 +7,34 @@
       </div>
       <div class="columns small-12 large-6">
         <ul class="footer__menu">
-          <li>
-            <nuxt-link to="">Deklaracja dostępności</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link to="">Mapa strony</nuxt-link>
-          </li>
-          <li>
-            <nuxt-link to="">Polityka prywatności</nuxt-link>
+          <li v-for="item in menu" :key="item.ID">
+            <nuxt-link class="navigation__element" @click.native="emitClosure" :to="item.slug">{{ item.name }}</nuxt-link>
           </li>
         </ul>
       </div>
     </div>
   </footer>
 </template>
+
+<script>
+import API from '../api/connectors/wordpress';
+
+export default {
+  name: 'Footer',
+  data() {
+    return {
+      menu: null
+    }
+  },
+  mounted() {
+    let api = new API(this.$axios);
+    let menu = api.getFooterMenu();
+    menu.then((resp) => {
+      this.menu = resp
+    })
+  }
+}
+</script>
 
 <style lang="scss">
 .footer {
