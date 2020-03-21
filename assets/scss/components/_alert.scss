@@ -1,0 +1,9 @@
+.alert {
+  padding: 10px 0;
+  background: transparent;
+  border-top: 2px solid #f4f4f4;
+  border-bottom: 2px solid #f4f4f4;
+  &--success {
+    border-color: #8bc34a;
+  }
+}

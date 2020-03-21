@@ -18,6 +18,7 @@
 import { latLngBounds, latLng } from "leaflet";
 
 export default {
+  name: "BaseMap",
   props: {
     data: {
       type: Object

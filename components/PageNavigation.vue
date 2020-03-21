@@ -1,9 +1,9 @@
 <template>
   <nav class="navigation">
     <ul class="navigation__menu">
-      <li v-for="item in menu" :key="item.ID">
-        <a v-if="item.external" :href="item.slug" class="navigation__element" @click.native="emitClosure">{{ item.name }}</a>
-        <nuxt-link v-else class="navigation__element" @click.native="emitClosure" :to="item.slug">{{ item.name }}</nuxt-link>
+      <li @click="emitClosure" v-for="item in menu" :key="item.ID">
+        <a v-if="item.external" :href="item.slug" class="navigation__element" >{{ item.name }}</a>
+        <nuxt-link v-else class="navigation__element" :to="item.slug">{{ item.name }}</nuxt-link>
       </li>
     </ul>
   </nav>

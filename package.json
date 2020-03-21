@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
+    "formvuelatte": "^0.2.3",
     "foundation-sites": "^6.5.3",
     "nuxt": "^2.0.0",
     "nuxt-leaflet": "^0.0.21",
