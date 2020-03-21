@@ -1,7 +1,7 @@
 <template functional>
   <div class="date">
     <img src="~/assets/img/icons/calendar.svg" alt="Ikona kalendrza">
-    <p>{{ props.date }}</p>
+    <p>{{ `Data ostatniej modyfikacji: ${props.date}` }}</p>
   </div>
 </template>
 

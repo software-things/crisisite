@@ -1,8 +1,9 @@
 <template>
   <div class="index">
     <div class="row">
-      <div class="columns small-12 line">
+      <div class="columns small-12">
         <h1 class="title">Komunikaty</h1>
+        <div class="line fullwidth"></div>
       </div>
     </div>
     <div class="row">
@@ -25,6 +26,17 @@ export default {
     ...mapGetters({
       posts: 'getAllPosts'
     })
+  },
+    mounted() {
+    if (this.posts) {
+      const breadcrumbs = [
+        {
+          href: '/',
+          name: 'Komunikaty'
+        }
+      ]
+      this.$store.commit('BREADCRUMBS', breadcrumbs)
+    }
   }
 }
 </script>
@@ -32,5 +44,8 @@ export default {
 <style lang="scss">
 .index {
   color: $font;
+  @include desktop {
+    margin-top: 3px;
+  }
 }
 </style>

@@ -7,7 +7,11 @@
         <img :src="post.featured_image" :alt="post.featured_image_alt">
       </div>
       <div v-else class="line"></div>
-      <div class="post__content" v-html="post.content"></div>
+      <div class="content" v-html="post.content"></div>
+      <client-only>
+        <Map v-if="post.map.markers" :data="post.map" />
+        <BaseForm v-if="post.form" :data="post.form" />
+      </client-only>
     </div>
     <div v-else>
       <h1 class="title">Wybrany artykuł nie istnieje</h1>
@@ -18,6 +22,7 @@
 
 <script>
 import DateTemplate from '~/components/DateTemplate';
+import BaseForm from "~/components/BaseForm";
 
 export default {
   name: 'ArticleComponent',
@@ -27,7 +32,13 @@ export default {
     }
   },
   components: {
-    DateTemplate
+    DateTemplate,
+    BaseForm,
+    Map: () => {
+      if (process.client) {
+        return import("../components/TheMap.vue");
+      }
+    }
   }
 }
 </script>

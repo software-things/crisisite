@@ -20,6 +20,21 @@ export default {
     post() {
       return this.getPostBySlug(this.$route.params.slug)
     },
+  },
+  mounted() {
+    if (this.post) {
+      const breadcrumbs = [
+        {
+          href: '/',
+          name: 'Komunikaty'
+        },
+        {
+          href: `/komunikaty/${this.post.slug}`,
+          name: this.post.title
+        }
+      ]
+      this.$store.commit('BREADCRUMBS', breadcrumbs)
+    }
   }
 }
 </script>

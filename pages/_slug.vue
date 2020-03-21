@@ -20,6 +20,16 @@ export default {
     page() {
       return this.getPagesBySlug(this.$route.params.slug)
     },
+  },mounted() {
+    if (this.page) {
+      const breadcrumbs = [
+        {
+          href: `/${this.page.slug}`,
+          name: this.page.title
+        }
+      ]
+      this.$store.commit('BREADCRUMBS', breadcrumbs)
+    }
   }
 }
 </script>

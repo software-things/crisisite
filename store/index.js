@@ -7,7 +7,17 @@ export const state = () => ({
   wcag: {
     fontSize: 100,
     contrast: false
-  }
+  },
+  breadcrumbs: [
+    {
+      href: '/',
+      name: 'Strona startowa'
+    },
+    {
+      href: '/',
+      name: 'Komunikaty'
+    }
+  ]
 })
 
 export const actions = {
@@ -43,6 +53,16 @@ export const mutations = {
   },
   CONTRAST (state, status) {
     state.wcag.contrast = status
+  },
+  BREADCRUMBS (state, status) {
+    const breadcrumbs = [
+      {
+        href: '/',
+        name: 'Strona startowa'
+      }
+    ]
+    breadcrumbs.push(...status)
+    state.breadcrumbs = breadcrumbs
   }
 }
 

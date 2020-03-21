@@ -48,10 +48,12 @@ export default {
     // @TOOD: Poprawić ten event:
     if (process.client) {
       const form = document.querySelector(".schema-form");
-      form.addEventListener("submit", e => {
-        e.preventDefault();
-        this.submit();
-      });
+      if (form) {
+        form.addEventListener("submit", e => {
+          e.preventDefault();
+          this.submit();
+        });
+      }
     }
   },
   computed: {
@@ -60,23 +62,25 @@ export default {
     }),
     schema() {
       const fields = [];
-      this.data.fields.map(field => {
-        fields.push({
-          component: this.componentDictionary[field.type]
-            ? this.componentDictionary[field.type]
-            : FormText,
-          model: field.name,
-          config: {
-            label: field.label,
-            id: field.name,
-            type: field.type,
-            placeholder: field.placeholder,
-            required: field.required == "true",
-            rows: field.rows,
-            choices: field.choices
-          }
+      if (this.data.fields) {
+        this.data.fields.map(field => {
+          fields.push({
+            component: this.componentDictionary[field.type]
+              ? this.componentDictionary[field.type]
+              : FormText,
+            model: field.name,
+            config: {
+              label: field.label,
+              id: field.name,
+              type: field.type,
+              placeholder: field.placeholder,
+              required: field.required == "true",
+              rows: field.rows,
+              choices: field.choices
+            }
+          });
         });
-      });
+      }
       return fields;
     }
   },
