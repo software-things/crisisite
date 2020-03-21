@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "types": [
+      "@nuxt/vue-app",
+      "@nuxtjs/axios"
+    ]
+  },
+  "include": [
+    "api/**/*"
+  ],
+}
