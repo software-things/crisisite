@@ -10,30 +10,30 @@
         <p class="header__page-title">{{ content.headline }}</p>
       </div>
       <div class="colums small-12 large-3">
-        <div class="header__flex header__flex--spaced">
+        <div class="header__flex">
           <div>
             <div class="hide-large">
-              <Navigation v-if="menuVisible" @navigation-clicked="handleMenuVisibility" />
+              <PageNavigation v-if="menuVisible" @navigation-clicked="handleMenuVisibility" />
             </div>
-            <Hamburger @hamburger-clicked="handleMenuVisibility" :menuVisible="menuVisible"/>
+            <TheHamburger @hamburger-clicked="handleMenuVisibility" :menuVisible="menuVisible"/>
           </div>
           <div class="header__flex">
             <button type="button">
-              <img src="~/assets/img/icons/search.svg" alt="Wyszukaj w serwisie">
+              <img class="header__icon" src="~/assets/img/icons/search.svg" alt="Wyszukaj w serwisie">
             </button>
-            <div>
+            <div class="header__resize">
               <button type="button" @click.prevent="fontSize('down')">-</button>
               <button type="button" @click.prevent="fontSize('default')">A</button>
               <button type="button" @click.prevent="fontSize('up')">+</button>
             </div>
             <button type="button" @click.prevent="toggleContrast">
-              <img src="~/assets/img/icons/contrast.svg" alt="Wersja kontrastowa">
+              <img class="header__icon" src="~/assets/img/icons/contrast.svg" alt="Wersja kontrastowa">
             </button>
             <a href="/" rel="noopener noreferrer nofollow" target="_blank">
-              <img src="~/assets/img/icons/deaf.svg" alt="Informacja dla słabosłyszących">
+              <img class="header__icon" src="~/assets/img/icons/deaf.svg" alt="Informacja dla słabosłyszących">
             </a>
             <a :href="content.bip" rel="noopener noreferrer nofollow" target="_blank">
-              <img src="~/assets/img/icons/bip.svg" alt="Biuletyn Informacji Publicznej">
+              <img class="header__bip" src="~/assets/img/icons/bip.svg" alt="Biuletyn Informacji Publicznej">
             </a>
           </div>
         </div>
@@ -46,8 +46,8 @@
 </template>
 
 <script>
-import Hamburger from "~/components/Hamburger";
-import Navigation from "~/components/Navigation";
+import TheHamburger from "~/components/TheHamburger";
+import PageNavigation from "~/components/PageNavigation";
 import { mapGetters } from 'vuex';
 
 export default {
@@ -57,8 +57,8 @@ export default {
     }
   },
   components: {
-    Hamburger,
-    Navigation
+    TheHamburger,
+    PageNavigation
   },
   methods: {
     handleMenuVisibility(value) {
@@ -108,7 +108,7 @@ export default {
     position: sticky;
     top: 0;
     z-index: 10;
-    margin-bottom: 5px;
+    margin: 8px 0;
 
     @include desktop {
       justify-content: flex-end;
@@ -116,6 +116,17 @@ export default {
 
     &--spaced {
       justify-content: space-between;
+    }
+
+    &>button, div, &>a {
+      padding: 0 8px;
+    }
+  }
+  
+  &__resize {
+    font-size: rem(23px);
+    button {
+      padding: 0px;
     }
   }
 
@@ -128,6 +139,14 @@ export default {
     p {
       margin: 0;
     }
+  }
+
+  &__icon {
+    height: 27px;
+  }
+
+  &__bip {
+    height: 40px;
   }
 }
 </style>

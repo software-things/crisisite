@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="post" class="post">
-      <DateComponent :date="post.date" />
+      <DateTemplate :date="post.date" />
       <h1 class="title">{{ post.title }}</h1>
       <div v-if="post.featured_image" class="post__image">
         <img :src="post.featured_image" :alt="post.featured_image_alt">
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import DateComponent from '~/components/Date';
+import DateTemplate from '~/components/DateTemplate';
 
 export default {
   name: 'ArticleComponent',
@@ -27,7 +27,7 @@ export default {
     }
   },
   components: {
-    DateComponent
+    DateTemplate
   }
 }
 </script>

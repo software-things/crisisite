@@ -1,6 +1,6 @@
 <template>
   <nuxt-link class="thumb" :class="{ 'line' : first }" :to="`/komunikaty/${post.slug}`" :title="`Czytaj: ${post.title}`">
-    <DateComponent :date="post.date" />
+    <DateTemplate :date="post.date" />
     <p class="thumb__title">{{ post.title }}</p>
     <div v-if="post.featured_image" class="thumb__image">
       <img :src="post.featured_image" :alt="post.featured_image_alt">
@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import DateComponent from '~/components/Date';
+import DateTemplate from '~/components/DateTemplate';
 
 export default {
   name: 'PostThumb',
   props: ['first', 'post'],
   components: {
-    DateComponent
+    DateTemplate
   }
 }
 </script>
