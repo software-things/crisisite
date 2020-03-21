@@ -18,7 +18,7 @@
             <button class="pagination__button" type="button" v-if="currentPage > 0" @click="handlePagination(currentPage - 1)">poprzednia</button>
           </div>
           <div>
-            <button class="pagination__button" :class="{ 'pagination__button--active' : currentPage === index }"type="button" @click="handlePagination(index)" v-for="(n, index) in allPages" :key="n">{{ n }}</button>
+            <button class="pagination__button" :class="{ 'pagination__button--active' : currentPage === index }" type="button" @click="handlePagination(index)" v-for="(n, index) in allPages" :key="n">{{ n }}</button>
           </div>
           <div class="pagination__text">
             <button class="pagination__button" type="button" v-if="currentPage < allPages - 1" @click="handlePagination(currentPage + 1)">następna</button>
