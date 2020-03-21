@@ -66,4 +66,9 @@ export default class WordPressApi {
     const RESPONSE = await this.axios.$get(`menus/v1/menus/3`);
     return this._prepareMenu(RESPONSE)
   }
+
+  async getAdditionalData() {
+    const RESPONSE = await this.axios.$get(`wp/v2/czk-settings`);
+    return RESPONSE
+  }
 }

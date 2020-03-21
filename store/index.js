@@ -13,6 +13,7 @@ export const actions = {
     commit('SET_POSTS', await api.getPosts());
     commit('SET_MAIN_MENU', await api.getMainMenu());
     commit('SET_FOOTER_MENU', await api.getFooterMenu());
+    commit('SET_ADDITIONAL_DATA', await api.getAdditionalData());
   }
 }
 
@@ -25,6 +26,9 @@ export const mutations = {
   },
 	SET_FOOTER_MENU (state, footerMenu) {
 		state.footerMenu = footerMenu
+  },
+	SET_ADDITIONAL_DATA (state, additionalData) {
+		state.additionalData = additionalData
   }
 }
 
@@ -37,5 +41,8 @@ export const getters = {
   },
   getFooterMenu (state) {
     return state.footerMenu
+  },
+  getAdditionalData (state) {
+    return state.additionalData
   }
 }

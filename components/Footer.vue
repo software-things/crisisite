@@ -2,8 +2,8 @@
   <footer class="footer">
     <div class="row">
       <div class="columns small-12 large-6">
-        <p class="footer__name">Wydział Zarządzania Kryzysowego Urzędu Miasta Katowice</p>
-        <p class="footer__contact">Telefon: <a href="tel: 32 253 95 84">32 253 95 84</a> / E-mail: <a href="mailto: zk@katowice.e">zk@katowice.eu</a></p>
+        <p class="footer__name">{{ content.headline }}</p>
+        <p class="footer__contact">Telefon: <a :href="`tel:${content.phone}`">{{ content.phone }}</a> / E-mail: <a :href="`mailto:${content.email}`">{{ content.email }}</a></p>
       </div>
       <div class="columns small-12 large-6">
         <ul class="footer__menu">
@@ -24,7 +24,8 @@ export default {
   name: 'Footer',
   computed: {
     ...mapGetters({
-      menu: 'getFooterMenu'
+      menu: 'getFooterMenu',
+      content: 'getAdditionalData'
     })
   }
 }

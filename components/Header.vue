@@ -2,10 +2,10 @@
   <header class="header">
     <div class="row header__row">
       <div class="columns small-12 large-2">
-        <img src="~/assets/img/city-logo.svg" alt="Logo Katowice z napisem Katowice – dla odmiany">
+        <img :src="content.logo" alt="Logo Katowice z napisem Katowice – dla odmiany">
       </div>
       <div class="columns small-12 large-7">
-        <p class="header__page-title">Wydział Zarządzania Kryzysowego Urzędu Miasta Katowice</p>
+        <p class="header__page-title">{{ content.headline }}</p>
       </div>
       <div class="colums small-12 large-3">
         <div class="header__flex">
@@ -24,7 +24,7 @@
            <a href="/" rel="noopener noreferrer nofollow" target="_blank">
             <img src="~/assets/img/icons/deaf.svg" alt="Informacja dla słabosłyszących">
           </a>
-          <a href="https://bip.katowice.eu/Strony/default.aspx?menu=562" rel="noopener noreferrer nofollow" target="_blank">
+          <a :href="content.bip" rel="noopener noreferrer nofollow" target="_blank">
             <img src="~/assets/img/icons/bip.svg" alt="Biuletyn Informacji Publicznej">
           </a>
           <div class="hide-large">
@@ -33,8 +33,8 @@
         </div>
       </div>
     </div>
-    <div class="header__warning">
-      <p>Nowy tymczasowy szpital zakaźny w Szkole Podstawowej numer 8</p>
+    <div v-if="content.warning" class="header__warning">
+      <p>{{ content.warning }}</p>
     </div>
   </header>
 </template>
@@ -42,6 +42,7 @@
 <script>
 import Hamburger from "~/components/Hamburger";
 import Navigation from "~/components/Navigation";
+import { mapGetters } from 'vuex';
 
 export default {
   data() {
@@ -57,6 +58,11 @@ export default {
     handleMenuVisibility(value) {
       this.menuVisible = value
     }
+  },
+    computed: {
+    ...mapGetters({
+      content: 'getAdditionalData'
+    })
   }
 }
 </script>
