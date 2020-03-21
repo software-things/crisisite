@@ -9,7 +9,7 @@
       <div v-else class="line"></div>
       <div class="content" v-html="post.content"></div>
       <client-only>
-        <!-- <Map :data="post.map" /> -->
+        <Map v-if="post.map.markers" :data="post.map" />
       </client-only>
     </div>
     <div v-else>
@@ -33,7 +33,7 @@ export default {
     DateTemplate,
     Map: () => {
       if (process.client) {
-        return import("../components/Map.vue");
+        return import("../components/TheMap.vue");
       }
     }
   }
