@@ -138,4 +138,21 @@ body.contrast {
     background: yellow;
     border-top: 1px solid black;
   }
+
+  .pagination {
+    &__button {
+      color: black;
+    }
+  }
+  input, select, textarea {
+    background: yellow;
+
+    &::placeholder {
+      color: black;
+    }
+  }
+
+  .search-bar__input {
+    background: yellow;
+  }
 }
