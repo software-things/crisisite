@@ -7,7 +7,7 @@
     </div>
     <div v-if="posts.length > 0 || pages.length > 0 " class="row">
       <div class="columns small-12 large-6" v-for="post in [...posts, ...pages]" :key="post.id">
-        <PostThumb :post="post"/>
+        <PostThumb :post="post" />
       </div>
     </div>
     <div v-else class="row">
