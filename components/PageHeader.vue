@@ -75,7 +75,7 @@ export default {
       if (option === 'default') {
         fontSize = 100
       }
-      this.$store.commit('FONT_SIZE', fontSize) 
+      this.$store.commit('FONT_SIZE', fontSize)
     },
     toggleContrast() {
       this.$store.commit('CONTRAST', !this.$store.state.wcag.contrast) 

@@ -25,6 +25,17 @@ export default {
     ...mapGetters({
       posts: 'getAllPosts'
     })
+  },
+    mounted() {
+    if (this.posts) {
+      const breadcrumbs = [
+        {
+          href: '/',
+          name: 'Komunikaty'
+        }
+      ]
+      this.$store.commit('BREADCRUMBS', breadcrumbs)
+    }
   }
 }
 </script>

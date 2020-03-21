@@ -1,11 +1,8 @@
 <template>
   <div class="breadcrumbs">
-    <nuxt-link to="/">
-      <img src="~/assets/img/icons/home.svg" alt="Strona startowa">
-      Strona startowa
-    </nuxt-link> /
-    <nuxt-link to="/">
-      Komunikaty
+    <nuxt-link :to="item.href" v-for="(item, index) in $store.state.breadcrumbs" :key="index">
+      <img v-if="index === 0" src="~/assets/img/icons/home.svg" alt="Strona startowa">
+      {{ index === 0 ? item.name : `/ ${item.name}`}}
     </nuxt-link>
   </div>
 </template>
