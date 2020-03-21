@@ -1,8 +1,12 @@
 <template>
   <div class="form">
     <h2 v-if="data.headline" class="form__headline">{{ data.headline }}</h2>
-    <div v-show="sent" class="alert alert--success">Formularz został przesłany poprawnie.</div>
-    <SchemaForm v-show="!sent" :schema="schema" v-model="userData" />
+    <div v-show="success" class="alert alert--success">Formularz został przesłany poprawnie.</div>
+    <div
+      v-show="error"
+      class="alert alert--error"
+    >Niestety, wystąpił błąd podczas wysyłania formularza, spróbuj ponownie wkrótce.</div>
+    <SchemaForm v-show="!success" :schema="schema" v-model="userData" />
     <div v-show="sending" class="alert alert--loading">Trwa przesyłanie formularza...</div>
   </div>
 </template>
@@ -30,7 +34,8 @@ export default {
     return {
       userData: {},
       sending: false,
-      sent: false,
+      success: false,
+      error: false,
       componentDictionary: {
         textarea: FormTextarea,
         select: FormSelect,
@@ -101,7 +106,13 @@ export default {
         )
         .then(response => {
           this.sending = false;
-          this.sent = true;
+          if (response.data.data.message === "OK") {
+            this.success = true;
+            this.error = false;
+          }
+        })
+        .catch(e => {
+          this.error = true;
         });
     }
   }
