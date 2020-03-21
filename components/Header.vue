@@ -15,15 +15,15 @@
           </button>
           <div>
             <button type="button">-</button>
-            A
+            <button type="button">A</button>
             <button type="button">+</button>
           </div>
           <button type="button">
             <img src="~/assets/img/icons/contrast.svg" alt="Wersja kontrastowa">
           </button>
-          <button type="button">
+           <a href="/" rel="noopener noreferrer nofollow" target="_blank">
             <img src="~/assets/img/icons/deaf.svg" alt="Informacja dla słabosłyszących">
-          </button>
+          </a>
           <a href="https://bip.katowice.eu/Strony/default.aspx?menu=562" rel="noopener noreferrer nofollow" target="_blank">
             <img src="~/assets/img/icons/bip.svg" alt="Biuletyn Informacji Publicznej">
           </a>

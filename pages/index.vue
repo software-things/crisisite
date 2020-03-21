@@ -14,22 +14,16 @@
 </template>
 
 <script>
-import API from '../api/connectors/wordpress';
+import { mapGetters } from 'vuex';
 import PostThumb from '~/components/PostThumb';
+
 export default {
-  data() {
-    return {
-      posts: null
-    }
-  },
   components: {
     PostThumb
   },
-  mounted() {
-    let api = new API(this.$axios);
-    let posts = api.getPosts();
-    posts.then((resp) => {
-      this.posts = resp
+  computed: {
+    ...mapGetters({
+      posts: 'getAllPosts'
     })
   }
 }

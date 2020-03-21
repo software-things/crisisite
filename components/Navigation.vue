@@ -2,30 +2,25 @@
   <nav class="navigation">
     <ul class="navigation__menu">
       <li v-for="item in menu" :key="item.ID">
-        <nuxt-link class="navigation__element" @click.native="emitClosure" :to="item.slug">{{ item.name }}</nuxt-link>
+        <a v-if="item.external" :href="item.slug" class="navigation__element" @click.native="emitClosure">{{ item.name }}</a>
+        <nuxt-link v-else class="navigation__element" @click.native="emitClosure" :to="item.slug">{{ item.name }}</nuxt-link>
       </li>
     </ul>
   </nav>
 </template>
 
 <script>
-import API from '../api/connectors/wordpress';
+import { mapGetters } from 'vuex';
+
 export default {
-  data() {
-    return {
-      menu: null
-    }
-  },
   methods:{
     emitClosure() {
       this.$emit('navigation-clicked', false);
     }
   },
-  mounted() {
-    let api = new API(this.$axios);
-    let menu = api.getMainMenu();
-    menu.then((resp) => {
-      this.menu = resp
+  computed: {
+    ...mapGetters({
+      menu: 'getMainMenu'
     })
   }
 }

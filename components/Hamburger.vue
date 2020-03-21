@@ -1,5 +1,5 @@
 <template>
-  <button :class="['hamburger', { 'hamburger--visible': menuVisible }]" @click="menuClick" title="Rozwiń menu">
+  <button :class="['hamburger', { 'hamburger--visible': menuVisible }]" @click="menuClick" title="Rozwiń menu" type="button">
     <div class="hamburger__stripe"></div>
     <div class="hamburger__stripe"></div>
     <div class="hamburger__stripe"></div>

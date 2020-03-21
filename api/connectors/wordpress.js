@@ -1,11 +1,38 @@
-// import RestApi from '../interfaces/rest-api.interface';
-// import ApiResponse from '../interfaces/response.interface';
-
 export default class WordPressApi {
   axios;
   constructor(axios) {
     this.axios = axios;
   }
+
+  _prepareMenu(RESPONSE) {
+    return RESPONSE.items.map((el) => {
+      let LINK_OBJ;
+
+      LINK_OBJ = {
+        id: el.ID,
+        slug: el.type === 'custom' ? el.url : `/${el.slug}`,
+        name: el.title,
+        external: el.type === 'custom'
+      }
+
+      return LINK_OBJ;
+    });
+  }
+
+  _dateFormated(date) {
+    if (date) {
+      const DATE_OBJ = new Date(date);
+      const OPTIONS = {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      }
+      return DATE_OBJ.toLocaleDateString('pl-PL', OPTIONS)
+    }
+  }
+
   async getPosts() {
     const RESPONSE = await this.axios.$get(`wp/v2/posts?_embed`);
     const DATA = RESPONSE.map((post) => {
@@ -14,7 +41,7 @@ export default class WordPressApi {
       transformedPost = {
         id: post.id,
         title: post.title.rendered,
-        date: this.dateFormated(post.date),
+        date: this._dateFormated(post.date),
         slug: post.slug,
         content: post.content.rendered,
         excerpt: post.excerpt.rendered,
@@ -32,39 +59,11 @@ export default class WordPressApi {
 
   async getMainMenu() {
     const RESPONSE = await this.axios.$get(`menus/v1/menus/2`);
-    return this.prepareMenu(RESPONSE)
+    return this._prepareMenu(RESPONSE)
   }
 
   async getFooterMenu() {
     const RESPONSE = await this.axios.$get(`menus/v1/menus/3`);
-    return this.prepareMenu(RESPONSE)
-  }
-
-  prepareMenu(RESPONSE) {
-    return RESPONSE.items.map((el) => {
-      let linkObj;
-
-      linkObj = {
-        id: el.ID,
-        slug: el.type === 'custom' ? el.url : `/${el.slug}`,
-        name: el.title
-      }
-
-      return linkObj;
-    });
-  }
-
-  dateFormated(date) {
-    if (date) {
-      const dateObj = new Date(date);
-      const options = {
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-      }
-      return dateObj.toLocaleDateString('pl-PL', options)
-    }
+    return this._prepareMenu(RESPONSE)
   }
 }
