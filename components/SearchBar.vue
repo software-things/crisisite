@@ -1,9 +1,10 @@
 <template>
   <div class="search-bar">
+    <input v-model="phrase" type="search" id="search" class="search-bar__input" placeholder="Wpisz wyszukiwaną frazę" autofocus>
+    <label for="search" class="search-bar__label">Wyszukiwarka</label>
     <nuxt-link :to="`/wyszukiwanie/${prepareLink}`" class="search-bar__redirect">
-      <img class="search-bar__img" src="~/assets/img/icons/search.svg" alt="Szukaj">
+      Wyślij
     </nuxt-link>
-    <input v-model="phrase" type="search" class="search-bar__input" placeholder="szukaj" autofocus>
   </div>
 </template>
 
@@ -50,20 +51,16 @@ export default {
 <style lang="scss" scoped>
 .search-bar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   position: relative;
   z-index: 99999;
   width: 100%;
   border: 1px solid black;
   margin-bottom: 20px;
-
-  @include desktop {
-    justify-content: flex-start;
-  }
+  padding: 2px 10px;
 
   &__input {
-    margin-left: 10px;
     width: 40%;
     background: white;
     border: none;
@@ -71,10 +68,11 @@ export default {
     font-size: rem(12px);
     transition: 0.3s;
     outline: none;
+    margin-top: 5px;
 
     @include desktop {
       font-size: rem(14px);
-      padding: 10px 30px;
+      padding: 10px 10px;
     }
 
     &::placeholder {
@@ -83,6 +81,17 @@ export default {
 
     &:focus, &:valid {
       width: 80%;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    top: 2px;
+    left: 10px;
+    font-size: rem(9px);
+
+    @include desktop {
+      left: 20px;
     }
   }
 

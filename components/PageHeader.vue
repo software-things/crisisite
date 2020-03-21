@@ -19,7 +19,8 @@
           </div>
           <div class="header__flex">
             <button type="button">
-              <img @click="showSearchBar" class="header__icon" src="~/assets/img/icons/search.svg" alt="Wyszukaj w serwisie">
+              <img @click="showSearchBar" v-if="searchBarVisible" class="header__icon" src="~/assets/img/icons/x.svg" alt="Zamknij wyszukiwarkę">
+              <img @click="showSearchBar" v-else class="header__icon" src="~/assets/img/icons/search.svg" alt="Wyszukaj w serwisie">
             </button>
             <div class="header__resize">
               <button type="button" @click.prevent="fontSize('down')">-</button>
@@ -37,9 +38,11 @@
             </a>
           </div>
         </div>
-        <div v-if="searchBarVisible" class="columns small-12">
-          <SearchBar @getClosure="closeSearchEngine" />
-        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div v-if="searchBarVisible" class="columns small-12">
+        <SearchBar @getClosure="closeSearchEngine" />
       </div>
     </div>
     <div v-if="content.warning" class="header__warning">
