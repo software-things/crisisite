@@ -50,6 +50,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/style-resources',
     '@nuxtjs/axios',
+    'nuxt-leaflet'
   ],
   /*
   ** Axios module configuration
@@ -65,7 +66,7 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend(config, ctx) {
     }
   }
 }
