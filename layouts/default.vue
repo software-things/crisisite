@@ -1,33 +1,43 @@
 <template>
   <div>
-    <Header />
+    <PageHeader />
     <div class="row">
-      <div class="columns small-12"><Breadcrumbs /></div>
+      <div class="columns small-12"><BreadcrumbsNavigation /></div>
       <div class="columns large-3 layout__navigation">
-        <Navigation />
+        <PageNavigation />
       </div>
       <div class="columns small-12 large-8">
         <nuxt />
       </div>
     </div>
-    <Footer />
+    <PageFooter />
   </div>
 </template>
 
 <script>
-import Header from '~/components/Header.vue'
-import Navigation from '~/components/Navigation';
-import Breadcrumbs from '~/components/Breadcrumbs';
-import Footer from '~/components/Footer';
+import PageHeader from '~/components/PageHeader.vue'
+import PageNavigation from '~/components/PageNavigation';
+import BreadcrumbsNavigation from '~/components/BreadcrumbsNavigation';
+import PageFooter from '~/components/PageFooter';
 
 export default {
   name: 'Layout',
   components: {
-    Header,
-    Navigation,
-    Breadcrumbs,
-    Footer
-  }
+    PageHeader,
+    PageNavigation,
+    PageFooter,
+    BreadcrumbsNavigation
+  },
+  head () {
+    return {
+      bodyAttrs: {
+        class: this.$store.state.wcag.contrast ? 'contrast' : ''
+      },
+      htmlAttrs: {
+        style: `font-size: ${this.$store.state.wcag.fontSize}%`
+      }
+    }
+  },
 }
 </script>
 

@@ -1,0 +1,19 @@
+<template functional>
+  <div class="date">
+    <img src="~/assets/img/icons/calendar.svg" alt="Ikona kalendrza">
+    <p>{{ props.date }}</p>
+  </div>
+</template>
+
+<style lang="scss">
+  .date {
+    display: flex;
+    font-size: rem(14px);
+    margin-bottom: 5px;
+
+    p {
+      margin: 0;
+      margin-left: 5px;
+    }
+  }
+</style>

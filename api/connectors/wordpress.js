@@ -24,8 +24,8 @@ export default class WordPressApi {
       const DATE_OBJ = new Date(date);
       const OPTIONS = {
         year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
         hour: '2-digit',
         minute: '2-digit'
       }
@@ -33,9 +33,8 @@ export default class WordPressApi {
     }
   }
 
-  async getPosts() {
-    const RESPONSE = await this.axios.$get(`wp/v2/posts?_embed`);
-    const DATA = RESPONSE.map((post) => {
+  _prepareArticles(RESPONSE) {
+    return RESPONSE.map((post) => {
       let transformedPost;
 
       transformedPost = {
@@ -54,7 +53,16 @@ export default class WordPressApi {
       return transformedPost;
     });
 
-    return DATA;
+  }
+
+  async getPosts() {
+    const RESPONSE = await this.axios.$get(`wp/v2/posts?_embed`);
+    return this._prepareArticles(RESPONSE);
+  }
+
+  async getPages() {
+    const RESPONSE = await this.axios.$get(`wp/v2/pages?_embed`);
+    return this._prepareArticles(RESPONSE);
   }
 
   async getMainMenu() {
