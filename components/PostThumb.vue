@@ -1,16 +1,25 @@
-<template functional>
-  <nuxt-link class="thumb" :class="{ 'line' : props.first }" :to="`/komunikaty/${props.post.slug}`" :title="`Czytaj: ${props.post.title}`">
-    <div class="thumb__date">
-      <img src="~/assets/img/icons/calendar.svg" alt="Ikona kalendrza">
-      <p>{{ props.post.date }}</p>
+<template>
+  <nuxt-link class="thumb" :class="{ 'line' : first }" :to="`/komunikaty/${post.slug}`" :title="`Czytaj: ${post.title}`">
+    <DateComponent :date="post.date" />
+    <p class="thumb__title">{{ post.title }}</p>
+    <div v-if="post.featured_image" class="thumb__image">
+      <img :src="post.featured_image" :alt="post.featured_image_alt">
     </div>
-    <p class="thumb__title">{{ props.post.title }}</p>
-    <div class="thumb__image">
-      <img :src="props.post.featured_image" :alt="props.post.featured_image_alt">
-    </div>
-    <div class="thumb__excerpt" v-html="props.post.excerpt"></div>
+    <div class="thumb__excerpt" v-html="post.excerpt"></div>
   </nuxt-link>
 </template>
+
+<script>
+import DateComponent from '~/components/Date';
+
+export default {
+  name: 'PostThumb',
+  props: ['first', 'post'],
+  components: {
+    DateComponent
+  }
+}
+</script>
 
 <style lang="scss">
 .thumb {
@@ -27,17 +36,6 @@
     }
   }
 
-  &__date {
-    display: flex;
-    font-size: rem(14px);
-    margin-bottom: 5px;
-
-    p {
-      margin: 0;
-      margin-left: 5px;
-    }
-  }
-
   &__title {
     font-size: rem(18px);
     font-weight: 700;
@@ -45,6 +43,7 @@
     margin-bottom: 10px;
 
     @include desktop {
+      height: 65px;
       font-size: rem(22px);
     }
   }
@@ -58,8 +57,10 @@
   }
 
   &__excerpt {
-    height: 90px;
-    overflow: hidden;
+    @include desktop {
+      height: 90px;
+      overflow: hidden;
+    }
   }
 }
 </style>

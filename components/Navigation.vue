@@ -50,6 +50,10 @@ export default {
     flex-direction: column;
     overflow-y: scroll;
     list-style: none;
+
+    @include desktop {
+      overflow-y: initial;
+    }
   }
 
   &__element {

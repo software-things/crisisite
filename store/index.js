@@ -11,6 +11,7 @@ export const actions = {
     let api = new API(this.$axios);
 
     commit('SET_POSTS', await api.getPosts());
+    commit('SET_PAGES', await api.getPages());
     commit('SET_MAIN_MENU', await api.getMainMenu());
     commit('SET_FOOTER_MENU', await api.getFooterMenu());
     commit('SET_ADDITIONAL_DATA', await api.getAdditionalData());
@@ -20,6 +21,9 @@ export const actions = {
 export const mutations = {
 	SET_POSTS (state, posts) {
 		state.posts = posts
+  },
+	SET_PAGES (state, pages) {
+		state.pages = pages
   },
 	SET_MAIN_MENU (state, mainMenu) {
 		state.mainMenu = mainMenu
@@ -44,5 +48,15 @@ export const getters = {
   },
   getAdditionalData (state) {
     return state.additionalData
+  },
+  getPostBySlug: (state) => (param) => {
+    return state.posts.filter(el => {
+      return el.slug === param
+    })[0]
+  },
+  getPagesBySlug: (state) => (param) => {
+    return state.pages.filter(el => {
+      return el.slug === param
+    })[0]
   }
 }

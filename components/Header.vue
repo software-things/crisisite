@@ -2,7 +2,9 @@
   <header class="header">
     <div class="row header__row">
       <div class="columns small-12 large-2">
-        <img :src="content.logo" alt="Logo Katowice z napisem Katowice – dla odmiany">
+        <nuxt-link to="/">
+          <img :src="content.logo" alt="Logo Katowice z napisem Katowice – dla odmiany">
+        </nuxt-link>
       </div>
       <div class="columns small-12 large-7">
         <p class="header__page-title">{{ content.headline }}</p>
