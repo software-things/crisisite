@@ -22,11 +22,11 @@
               <img src="~/assets/img/icons/search.svg" alt="Wyszukaj w serwisie">
             </button>
             <div>
-              <button type="button">-</button>
-              <button type="button">A</button>
-              <button type="button">+</button>
+              <button type="button" @click.prevent="fontSize('down')">-</button>
+              <button type="button" @click.prevent="fontSize('default')">A</button>
+              <button type="button" @click.prevent="fontSize('up')">+</button>
             </div>
-            <button type="button">
+            <button type="button" @click.prevent="toggleContrast">
               <img src="~/assets/img/icons/contrast.svg" alt="Wersja kontrastowa">
             </button>
             <a href="/" rel="noopener noreferrer nofollow" target="_blank">
@@ -63,6 +63,22 @@ export default {
   methods: {
     handleMenuVisibility(value) {
       this.menuVisible = value
+    },
+    fontSize(option) {
+      let fontSize = parseInt(this.$store.state.wcag.fontSize);
+      if (option === 'up' && fontSize < 115) {
+        fontSize = fontSize + 5
+      }
+      if (option === 'down' && fontSize > 85) {
+        fontSize = fontSize - 5
+      }
+      if (option === 'default') {
+        fontSize = 100
+      }
+      this.$store.commit('FONT_SIZE', fontSize) 
+    },
+    toggleContrast() {
+      this.$store.commit('CONTRAST', !this.$store.state.wcag.contrast) 
     }
   },
     computed: {

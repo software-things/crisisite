@@ -27,7 +27,17 @@ export default {
     Navigation,
     Breadcrumbs,
     Footer
-  }
+  },
+  head () {
+    return {
+      bodyAttrs: {
+        class: this.$store.state.wcag.contrast ? 'contrast' : ''
+      },
+      htmlAttrs: {
+        style: `font-size: ${this.$store.state.wcag.fontSize}%`
+      }
+    }
+  },
 }
 </script>
 

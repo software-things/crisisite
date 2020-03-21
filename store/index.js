@@ -3,7 +3,11 @@ import API from '../api/connectors/wordpress';
 export const state = () => ({
   posts: [],
   mainMenu: null,
-  footerMenu: null
+  footerMenu: null,
+  wcag: {
+    fontSize: 100,
+    contrast: false
+  }
 })
 
 export const actions = {
@@ -33,6 +37,12 @@ export const mutations = {
   },
 	SET_ADDITIONAL_DATA (state, additionalData) {
 		state.additionalData = additionalData
+  },
+  FONT_SIZE (state, size) {
+    state.wcag.fontSize = size
+  },
+  CONTRAST (state, status) {
+    state.wcag.contrast = status
   }
 }
 
