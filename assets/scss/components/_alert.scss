@@ -1,9 +1,13 @@
 .alert {
-  padding: 10px 0;
   background: transparent;
-  border-top: 2px solid #f4f4f4;
   border-bottom: 2px solid #f4f4f4;
+  border-top: 2px solid #f4f4f4;
+  margin-bottom: 15px;
+  padding: 10px 0;
   &--success {
     border-color: #8bc34a;
+  }
+  &--error {
+    border-color: red;
   }
 }
