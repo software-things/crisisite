@@ -22,15 +22,15 @@ export default {
 .hamburger {
   padding: 0;
   display: block;
-  z-index: 999;
+  z-index: 15;
   width: 45px;
   height: 45px;
   text-align: center;
   background: transparent;
   border: none;
   outline: none;
-  background: $font;
   text-align: center;
+  position: relative;
 
   @include desktop {
     display: none;
@@ -41,7 +41,7 @@ export default {
     height: 2px;
     margin: 8px 3px;
     transition: transform 300ms ease, opacity 500ms ease, visibility 500ms ease;
-    background-color: white;
+    background-color: $font;
 
     @include desktop {
       height: 4px;

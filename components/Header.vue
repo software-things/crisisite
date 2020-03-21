@@ -10,27 +10,31 @@
         <p class="header__page-title">{{ content.headline }}</p>
       </div>
       <div class="colums small-12 large-3">
-        <div class="header__flex">
-          <Hamburger @hamburger-clicked="handleMenuVisibility" :menuVisible="menuVisible"/>
-          <button type="button">
-            <img src="~/assets/img/icons/search.svg" alt="Wyszukaj w serwisie">
-          </button>
+        <div class="header__flex header__flex--spaced">
           <div>
-            <button type="button">-</button>
-            <button type="button">A</button>
-            <button type="button">+</button>
+            <div class="hide-large">
+              <Navigation v-if="menuVisible" @navigation-clicked="handleMenuVisibility" />
+            </div>
+            <Hamburger @hamburger-clicked="handleMenuVisibility" :menuVisible="menuVisible"/>
           </div>
-          <button type="button">
-            <img src="~/assets/img/icons/contrast.svg" alt="Wersja kontrastowa">
-          </button>
-           <a href="/" rel="noopener noreferrer nofollow" target="_blank">
-            <img src="~/assets/img/icons/deaf.svg" alt="Informacja dla słabosłyszących">
-          </a>
-          <a :href="content.bip" rel="noopener noreferrer nofollow" target="_blank">
-            <img src="~/assets/img/icons/bip.svg" alt="Biuletyn Informacji Publicznej">
-          </a>
-          <div class="hide-large">
-            <Navigation v-if="menuVisible" @navigation-clicked="handleMenuVisibility" />
+          <div class="header__flex">
+            <button type="button">
+              <img src="~/assets/img/icons/search.svg" alt="Wyszukaj w serwisie">
+            </button>
+            <div>
+              <button type="button">-</button>
+              <button type="button">A</button>
+              <button type="button">+</button>
+            </div>
+            <button type="button">
+              <img src="~/assets/img/icons/contrast.svg" alt="Wersja kontrastowa">
+            </button>
+            <a href="/" rel="noopener noreferrer nofollow" target="_blank">
+              <img src="~/assets/img/icons/deaf.svg" alt="Informacja dla słabosłyszących">
+            </a>
+            <a :href="content.bip" rel="noopener noreferrer nofollow" target="_blank">
+              <img src="~/assets/img/icons/bip.svg" alt="Biuletyn Informacji Publicznej">
+            </a>
           </div>
         </div>
       </div>
@@ -88,9 +92,14 @@ export default {
     position: sticky;
     top: 0;
     z-index: 10;
+    margin-bottom: 5px;
 
     @include desktop {
       justify-content: flex-end;
+    }
+
+    &--spaced {
+      justify-content: space-between;
     }
   }
 

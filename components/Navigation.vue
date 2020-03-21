@@ -34,6 +34,7 @@ export default {
   width: 100%;
   background: $special-bg;
   padding: 60px 0;
+  z-index: 15;
 
   @include desktop {
     position: inherit;

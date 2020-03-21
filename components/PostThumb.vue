@@ -37,7 +37,7 @@ export default {
   }
 
   &__title {
-    font-size: rem(18px);
+    font-size: rem(20px);
     font-weight: 700;
     margin: 0;
     margin-bottom: 10px;
