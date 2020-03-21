@@ -34,6 +34,7 @@ export default {
   width: 100%;
   background: $special-bg;
   padding: 60px 0;
+  z-index: 15;
 
   @include desktop {
     position: inherit;
@@ -50,6 +51,10 @@ export default {
     flex-direction: column;
     overflow-y: scroll;
     list-style: none;
+
+    @include desktop {
+      overflow-y: initial;
+    }
   }
 
   &__element {

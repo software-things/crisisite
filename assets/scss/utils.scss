@@ -23,6 +23,7 @@ a,
 button {
   color: inherit;
   outline: none;
+  cursor: pointer;
 }
 
 button {
@@ -102,16 +103,38 @@ a {
   }
 }
 
-.title {
-  font-size: rem(24px);
-  font-weight: 700;
-  margin-bottom: 10px;
-
-  @include desktop {
-    font-size: rem(30px);
-  }
-}
-
 .line {
   border-bottom: 1px solid #DDDDDD;
+}
+
+.link {
+  color: $link;
+}
+
+body.contrast {
+  background: yellow;
+  color: black;
+
+  a {
+    color: black;
+  }
+  .header,
+  .navigation {
+    background: yellow;
+    border: 1px solid black;
+  }
+  
+  .footer {
+    background: yellow;
+    border-color: black;
+  }
+  
+  .line {
+    border-bottom: 1px solid black;
+  }
+
+  .header__warning {
+    background: yellow;
+    border-top: 1px solid black;
+  }
 }
