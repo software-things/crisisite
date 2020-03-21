@@ -1,0 +1,60 @@
+<div id="czk-form" class="czk-row" v-cloak>
+    <div class="czk-column">
+        <div>
+            <label for="field_label">Etykieta pola</label>
+            <input type="text" id="field_label" name="field_label" required v-model="field.label" @keyup="field.name = slugify($event.target.value)">
+            <span>Ta nazwa będzie widoczna na stronie edycji</span>
+        </div>
+        <div>
+            <label for="field_name">Nazwa pola</label>
+            <input type="text" id="field_name" name="field_name" required v-model="field.name" @keyup="field.name = slugify($event.target.value)">
+            <span>Pojedyncze słowo, bez spacji. Dozwolone są myślniki i podkreślniki</span>
+        </div>
+        <div>
+            <label for="field_type">Typ pola</label>
+            <select name="field_type" id="field_type" v-model="field.type">
+                <option value="text">Tekst</option>
+                <option value="textarea">Obszar tekstowy</option>
+                <option value="email">E-mail</option>
+                <option value="number">Liczba</option>
+                <option value="url">URL</option>
+                <option value="select">Lista</option>
+                <option value="checkbox">Wybór (checkbox)</option>
+                <option value="submit">Wyślij</option>
+            </select>
+        </div>
+        <div v-if="field.type === 'textarea'">
+            <label for="field_rows">Wiersze</label>
+            <input type="number" id="field_rows" name="field_rows" v-model="field.rows" required>
+            <span>Określa wysokość obszaru tekstowego</span>
+        </div>
+        <div v-if="['select', 'checkbox'].includes(field.type)">
+            <label for="field_choices">Wybory</label>
+            <textarea rows="5" id="field_choices" name="field_choices" v-model="field.choices" required></textarea>
+            <span>Wpisz każdy z wyborów w osobnej linii.<br>Aby uzyskać większą kontrolę, można określić zarówno wartość i etykietę w niniejszy sposób:<br>czerwony : Czerwony</span>
+        </div>
+        <div>
+            <label for="field_placeholder">Placeholder (tekst zastępczy)</label>
+            <input type="text" id="field_placeholder" name="field_placeholder" v-model="field.placeholder">
+            <span>Pojawia się w polu formularza</span>
+        </div>
+        <div style="margin-bottom: 15px">
+            <label for="field_required">Wymagane?</label>
+            <select name="field_required" id="field_required" v-model="field.required">
+                <option value="true">Tak</option>
+                <option value="false">Nie</option>
+            </select>
+        </div>
+        <div>
+            <button :disabled="field.label.length === 0 || field.name.length === 0" type="submit" class="button" @click.prevent="createField">{{ edit ? 'Zapisz' : 'Dodaj' }} pole</button>
+            <button v-if="edit" type="button" @click.prevent="deleteCurrentField" class="button">Usuń</button>
+        </div>
+    </div>
+    <div class="czk-column">
+        <draggable v-show="fields.length > 0"  v-model="fields" draggable=".item" class="form-container">
+            <div v-for="(field, key) in fields" :key="key" @click="editField(field)" class="item">
+                <div class="field" v-html="renderField(field)"></div>
+            </div>
+        </draggable>
+    </div>
+</div>

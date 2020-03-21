@@ -1,0 +1,73 @@
+@charset "UTF-8";
+.czk-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.czk-column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+}
+
+#czk-form[v-cloak] {
+  display: none;
+}
+#czk-form label {
+  margin-bottom: 5px;
+  display: block;
+}
+#czk-form input, #czk-form select, #czk-form textarea {
+  width: 200px;
+  padding: 3px;
+}
+#czk-form input[type=checkbox] {
+  width: unset;
+}
+#czk-form span {
+  font-size: 12px;
+  display: block;
+  margin-top: 5px;
+}
+#czk-form .form-container {
+  border: 1px dashed #e4e4e4;
+}
+#czk-form .field {
+  border: 1px dashed #e4e4e4;
+  margin: 5px;
+  display: block;
+  padding: 10px;
+  position: relative;
+}
+#czk-form .field:after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: "";
+  cursor: move;
+}
+#czk-form .field:before {
+  content: "Kliknij aby zmienić lub usunąć";
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #e4e4e4;
+  color: #333333;
+  font-size: 11px;
+  padding: 5px 8px;
+  z-index: 2;
+  cursor: pointer;
+}
+#czk-form .sortable-ghost {
+  opacity: 0.25;
+}
+#czk-form button {
+  width: max-content;
+}
+
+/*# sourceMappingURL=main.css.map */
