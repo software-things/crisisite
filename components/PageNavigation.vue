@@ -63,6 +63,12 @@ export default {
     font-weight: 400;
     padding-bottom: 10px;
     padding-left: 50px;
+
+    @include desktop {
+      &:hover {
+        color: black;
+      }
+    }
   }
 
   .nuxt-link-exact-active.nuxt-link-active {

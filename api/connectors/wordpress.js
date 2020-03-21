@@ -40,7 +40,7 @@ export default class WordPressApi {
       transformedPost = {
         id: post.id,
         title: post.title.rendered,
-        date: this._dateFormated(post.date),
+        date: this._dateFormated(post.modified),
         slug: post.slug,
         content: post.content.rendered,
         excerpt: post.excerpt.rendered,
@@ -48,6 +48,7 @@ export default class WordPressApi {
         featured_image_alt: post.featured_media > 0 ? post._embedded['wp:featuredmedia'][0].alt : null,
         map: post.czk_map,
         form: post.czk_form,
+        isItPage: post.type === 'page'
       }
 
       return transformedPost;
@@ -60,8 +61,18 @@ export default class WordPressApi {
     return this._prepareArticles(RESPONSE);
   }
 
+  async getSearchedPosts(phrase) {
+    const RESPONSE = await this.axios.$get(`wp/v2/posts?search=${phrase.replace(/-/g, '%20')}&_embed`);
+    return this._prepareArticles(RESPONSE);
+  }
+
   async getPages() {
     const RESPONSE = await this.axios.$get(`wp/v2/pages?_embed`);
+    return this._prepareArticles(RESPONSE);
+  }
+
+  async getSearchedPages(phrase) {
+    const RESPONSE = await this.axios.$get(`wp/v2/pages?search=${phrase.replace(/-/g, '%20')}&_embed`);
     return this._prepareArticles(RESPONSE);
   }
 

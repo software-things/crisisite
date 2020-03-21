@@ -44,6 +44,11 @@ export default {
     a {
       font-weight: 400;
       color: $link;
+      @include desktop {
+        &:hover {
+          color: black;
+        }
+      }
     }
   }
 

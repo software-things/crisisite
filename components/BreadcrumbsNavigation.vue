@@ -20,6 +20,12 @@
       img {
         margin-right: 5px;
       }
+
+      @include desktop {
+        &:hover {
+          color: black;
+        }
+      }
     }
   }
 </style>
