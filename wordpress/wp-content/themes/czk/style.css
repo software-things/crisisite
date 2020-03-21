@@ -1,0 +1,46 @@
+/*
+Theme Name: CZK
+Version: 1.0
+Author: Software Things
+Author URI: https://softwarethings.pro/
+*/
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+p {
+    line-height: 24px;
+}
+
+header,
+footer,
+nav {
+    background: #cccccc;
+    padding: 30px;
+    text-align: center;
+}
+
+header {
+    margin-bottom: 30px;
+}
+
+footer {
+    margin-top: 30px;
+}
+
+nav {
+    padding: 100px 0;
+    margin-bottom: 30px;
+}
+
+.wp-post-image {
+    margin: 15px 0;
+    width: 100%;
+}

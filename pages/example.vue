@@ -1,9 +1,17 @@
 <template>
   <div class="index">
-    <div class="row">
+    <div v-if="post.map" class="row">
       <div class="columns small-12">
         <client-only>
-          <Map :data="post.map" />
+          <BaseMap :data="post.map" />
+        </client-only>
+      </div>
+    </div>
+
+    <div v-if="post.form" class="row">
+      <div class="columns small-12">
+        <client-only>
+          <BaseForm :data="post.form" />
         </client-only>
       </div>
     </div>
@@ -13,14 +21,17 @@
 <script>
 import { mapGetters } from "vuex";
 import PostThumb from "~/components/PostThumb";
+import BaseForm from "~/components/BaseForm";
+
 export default {
   components: {
     PostThumb,
-    Map: () => {
+    BaseMap: () => {
       if (process.client) {
-        return import("../components/Map.vue");
+        return import("../components/BaseMap.vue");
       }
-    }
+    },
+    BaseForm
   },
   computed: {
     ...mapGetters({
