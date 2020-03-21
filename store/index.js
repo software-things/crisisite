@@ -70,6 +70,9 @@ export const getters = {
   getAllPosts (state) {
     return state.posts
   },
+  getAllPages (state) {
+    return state.pages
+  },
   getMainMenu(state) {
     return state.mainMenu
   },
