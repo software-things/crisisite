@@ -10,7 +10,10 @@
       autofocus
     />
     <label for="search" class="search-bar__label">Wyszukiwarka</label>
-    <nuxt-link :to="`/wyszukiwanie/${prepareLink}`" class="search-bar__redirect">Wyślij</nuxt-link>
+    <nuxt-link
+      :to="phrase.length >= 3 ? `/wyszukiwanie/${prepareLink}` : ''"
+      class="search-bar__redirect"
+    >Wyślij</nuxt-link>
     <div v-if="error" class="search-bar__error">{{ error }}</div>
   </div>
 </template>
