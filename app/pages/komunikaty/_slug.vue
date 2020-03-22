@@ -5,36 +5,41 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import ArticleComponent from '~/components/ArticleComponent';
+import { mapGetters } from "vuex";
+import ArticleComponent from "~/components/ArticleComponent";
 
 export default {
-  name: 'SinglePost',
+  name: "SinglePost",
   components: {
     ArticleComponent
   },
   computed: {
     ...mapGetters({
-      getPostBySlug: 'getPostBySlug'
+      getPostBySlug: "getPostBySlug"
     }),
     post() {
-      return this.getPostBySlug(this.$route.params.slug)
-    },
+      return this.getPostBySlug(this.$route.params.slug);
+    }
+  },
+  head() {
+    return {
+      title: this.post.title
+    };
   },
   mounted() {
     if (this.post) {
       const breadcrumbs = [
         {
-          href: '/',
-          name: 'Komunikaty'
+          href: "/",
+          name: "Komunikaty"
         },
         {
           href: `/komunikaty/${this.post.slug}`,
           name: this.post.title
         }
-      ]
-      this.$store.commit('BREADCRUMBS', breadcrumbs)
+      ];
+      this.$store.commit("BREADCRUMBS", breadcrumbs);
     }
   }
-}
+};
 </script>

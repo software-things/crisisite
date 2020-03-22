@@ -11,30 +11,30 @@
     <h2>Podstrony</h2>
     <ul class="site-map__list">
       <li v-for="page in pages" :key="page.ID">
-        <nuxt-link :to="`/${page.href}`">{{ page.title }}</nuxt-link>
+        <nuxt-link :to="`/${page.slug}`">{{ page.title }}</nuxt-link>
       </li>
     </ul>
     <h2>Komunikaty</h2>
     <ul class="site-map__list">
       <li v-for="post in posts" :key="post.ID">
-        <nuxt-link :to="`/komunikaty/${post.href}`">{{ post.title }}</nuxt-link>
+        <nuxt-link :to="`/komunikaty/${post.slug}`">{{ post.title }}</nuxt-link>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'SiteMap',
-    computed: {
+  name: "SiteMap",
+  computed: {
     ...mapGetters({
-      posts: 'getAllPosts',
-      pages: 'getAllPages'
-    }),
+      posts: "getAllPosts",
+      pages: "getAllPages"
+    })
   }
-}
+};
 </script>
 
 <style lang="scss">

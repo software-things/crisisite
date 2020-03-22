@@ -1,24 +1,29 @@
 <template>
-  <nuxt-link class="thumb" :class="{ 'line' : first }" :to="post.isItPage ?`/${post.slug}` : `/komunikaty/${post.slug}`" :title="`Czytaj: ${post.title}`">
+  <nuxt-link
+    class="thumb"
+    :class="{ 'line' : first }"
+    :to="post.isItPage ?`/${post.slug}` : `/komunikaty/${post.slug}`"
+    :title="`Czytaj: ${post.title}`"
+  >
     <DateTemplate :date="post.date" />
     <p class="thumb__title">{{ post.title }}</p>
     <div v-if="post.featured_image" class="thumb__image">
-      <img :src="post.featured_image" :alt="post.featured_image_alt">
+      <img :src="post.featured_image" :alt="post.featured_image_alt" />
     </div>
     <div v-if="post.excerpt" class="thumb__excerpt" v-html="post.excerpt"></div>
   </nuxt-link>
 </template>
 
 <script>
-import DateTemplate from '~/components/DateTemplate';
+import DateTemplate from "~/components/DateTemplate";
 
 export default {
-  name: 'PostThumb',
-  props: ['first', 'post'],
+  name: "PostThumb",
+  props: ["first", "post"],
   components: {
     DateTemplate
   }
-}
+};
 </script>
 
 <style lang="scss">
