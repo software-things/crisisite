@@ -30,5 +30,3 @@ $ yarn build --spa
 # run docker ecosystem (builds WordPress back-end and runs Nuxt app in SSR mode)
 $ docker-compose up --build -d
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
