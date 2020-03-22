@@ -4,7 +4,7 @@
       <DateTemplate :date="post.date" />
       <h1 class="title">{{ post.title }}</h1>
       <div v-if="post.featured_image" class="post__image">
-        <img :src="post.featured_image" :alt="post.featured_image_alt">
+        <img :src="post.featured_image" :alt="post.featured_image_alt" />
       </div>
       <div v-else class="line"></div>
       <div class="content" v-html="post.content"></div>
@@ -21,11 +21,11 @@
 </template>
 
 <script>
-import DateTemplate from '~/components/DateTemplate';
+import DateTemplate from "~/components/DateTemplate";
 import BaseForm from "~/components/BaseForm";
 
 export default {
-  name: 'ArticleComponent',
+  name: "ArticleComponent",
   props: {
     post: {
       type: Object
@@ -36,9 +36,9 @@ export default {
     BaseForm,
     Map: () => {
       if (process.client) {
-        return import("../components/TheMap.vue");
+        return import("../components/BaseMap.vue");
       }
     }
   }
-}
+};
 </script>

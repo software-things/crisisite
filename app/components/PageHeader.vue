@@ -3,7 +3,7 @@
     <div class="row header__row">
       <div class="columns small-12 large-2 header__center">
         <nuxt-link to="/">
-          <img :src="content.logo" alt="Logo Katowice z napisem Katowice – dla odmiany">
+          <img :src="content.logo" alt="Logo Katowice z napisem Katowice – dla odmiany" />
         </nuxt-link>
       </div>
       <div class="columns small-12 large-6 header__center">
@@ -15,12 +15,24 @@
             <div class="hide-large">
               <PageNavigation v-if="menuVisible" @navigation-clicked="handleMenuVisibility" />
             </div>
-            <TheHamburger @hamburger-clicked="handleMenuVisibility" :menuVisible="menuVisible"/>
+            <TheHamburger @hamburger-clicked="handleMenuVisibility" :menuVisible="menuVisible" />
           </div>
           <div class="header__flex">
             <button type="button">
-              <img @click="showSearchBar" v-if="searchBarVisible" class="header__icon" src="~/assets/img/icons/x.svg" alt="Zamknij wyszukiwarkę">
-              <img @click="showSearchBar" v-else class="header__icon" src="~/assets/img/icons/search.svg" alt="Wyszukaj w serwisie">
+              <img
+                @click="showSearchBar"
+                v-if="searchBarVisible"
+                class="header__icon"
+                src="~/assets/img/icons/x.svg"
+                alt="Zamknij wyszukiwarkę"
+              />
+              <img
+                @click="showSearchBar"
+                v-else
+                class="header__icon"
+                src="~/assets/img/icons/search.svg"
+                alt="Wyszukaj w serwisie"
+              />
             </button>
             <div class="header__resize">
               <button type="button" @click.prevent="fontSize('down')">-</button>
@@ -28,13 +40,25 @@
               <button type="button" @click.prevent="fontSize('up')">+</button>
             </div>
             <button type="button" @click.prevent="toggleContrast">
-              <img class="header__icon" src="~/assets/img/icons/contrast.svg" alt="Wersja kontrastowa">
+              <img
+                class="header__icon"
+                src="~/assets/img/icons/contrast.svg"
+                alt="Wersja kontrastowa"
+              />
             </button>
-            <a href="/" rel="noopener noreferrer nofollow" target="_blank">
-              <img class="header__icon" src="~/assets/img/icons/deaf.svg" alt="Informacja dla słabosłyszących">
-            </a>
+            <nuxt-link to="/informacja-dla-osob-nieslyszacych">
+              <img
+                class="header__icon"
+                src="~/assets/img/icons/deaf.svg"
+                alt="Informacja dla słabosłyszących"
+              />
+            </nuxt-link>
             <a :href="content.bip" rel="noopener noreferrer nofollow" target="_blank">
-              <img class="header__bip" src="~/assets/img/icons/bip.svg" alt="Biuletyn Informacji Publicznej">
+              <img
+                class="header__bip"
+                src="~/assets/img/icons/bip.svg"
+                alt="Biuletyn Informacji Publicznej"
+              />
             </a>
           </div>
         </div>
@@ -55,14 +79,14 @@
 import TheHamburger from "~/components/TheHamburger";
 import PageNavigation from "~/components/PageNavigation";
 import SearchBar from "~/components/SearchBar";
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
   data() {
     return {
       menuVisible: false,
       searchBarVisible: false
-    }
+    };
   },
   components: {
     TheHamburger,
@@ -71,47 +95,50 @@ export default {
   },
   methods: {
     handleMenuVisibility(value) {
-      this.menuVisible = value
+      this.menuVisible = value;
     },
     fontSize(option) {
       let fontSize = parseInt(this.$store.state.wcag.fontSize);
-      if (option === 'up' && fontSize < 115) {
-        fontSize = fontSize + 5
+      if (option === "up" && fontSize < 115) {
+        fontSize = fontSize + 5;
       }
-      if (option === 'down' && fontSize > 85) {
-        fontSize = fontSize - 5
+      if (option === "down" && fontSize > 85) {
+        fontSize = fontSize - 5;
       }
-      if (option === 'default') {
-        fontSize = 100
+      if (option === "default") {
+        fontSize = 100;
       }
-      this.$store.commit('FONT_SIZE', fontSize)
+      this.$store.commit("FONT_SIZE", fontSize);
     },
     toggleContrast() {
-      this.$store.commit('CONTRAST', !this.$store.state.wcag.contrast) 
+      this.$store.commit("CONTRAST", !this.$store.state.wcag.contrast);
     },
     showSearchBar() {
-      this.searchBarVisible = !this.searchBarVisible
+      this.searchBarVisible = !this.searchBarVisible;
     },
     closeSearchEngine(value) {
       this.searchBarVisible = value;
     }
   },
   watch: {
-    '$route'() {
-      this.searchBarVisible = false
+    $route() {
+      this.searchBarVisible = false;
     }
   },
   computed: {
     ...mapGetters({
-      content: 'getAdditionalData'
+      content: "getAdditionalData"
     })
   }
-}
+};
 </script>
 
 <style lang="scss">
 .header {
   padding-top: 20px;
+  @include desktop {
+    padding-top: 0;
+  }
   &__page-title {
     font-weight: 700;
 
@@ -135,7 +162,9 @@ export default {
       justify-content: flex-end;
     }
 
-    &>button, div, &>a {
+    & > button,
+    div,
+    & > a {
       padding: 0 8px;
     }
   }
@@ -145,7 +174,7 @@ export default {
       justify-content: space-between;
     }
   }
-  
+
   &__resize {
     font-size: rem(23px);
     button {
@@ -170,6 +199,14 @@ export default {
 
   &__bip {
     height: 40px;
+  }
+
+  &__resize button,
+  &__icon,
+  &__bip {
+    &:hover {
+      filter: drop-shadow(0 0 5px $warning);
+    }
   }
 
   &__center {

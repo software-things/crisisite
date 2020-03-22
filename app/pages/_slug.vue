@@ -5,31 +5,37 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import ArticleComponent from '~/components/ArticleComponent';
+import { mapGetters } from "vuex";
+import ArticleComponent from "~/components/ArticleComponent";
 
 export default {
-  name: 'Page',
+  name: "Page",
   components: {
     ArticleComponent
   },
   computed: {
     ...mapGetters({
-      getPagesBySlug: 'getPagesBySlug'
+      getPagesBySlug: "getPagesBySlug"
     }),
     page() {
-      return this.getPagesBySlug(this.$route.params.slug)
-    },
-  },mounted() {
+      return this.getPagesBySlug(this.$route.params.slug);
+    }
+  },
+  head() {
+    return {
+      title: this.page.title
+    };
+  },
+  mounted() {
     if (this.page) {
       const breadcrumbs = [
         {
           href: `/${this.page.slug}`,
           name: this.page.title
         }
-      ]
-      this.$store.commit('BREADCRUMBS', breadcrumbs)
+      ];
+      this.$store.commit("BREADCRUMBS", breadcrumbs);
     }
   }
-}
+};
 </script>
