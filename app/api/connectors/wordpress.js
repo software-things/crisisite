@@ -45,7 +45,7 @@ export default class WordPressApi {
         content: post.content.rendered,
         excerpt: post.excerpt.rendered,
         featured_image: post.featured_media > 0 ? post._embedded['wp:featuredmedia'][0].source_url : null,
-        featured_image_alt: post.featured_media > 0 ? post._embedded['wp:featuredmedia'][0].alt : null,
+        featured_image_alt: post.featured_media > 0 ? post._embedded['wp:featuredmedia'][0].alt_text : null,
         map: post.czk_map,
         form: post.czk_form,
         isItPage: post.type === 'page'
