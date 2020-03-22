@@ -38,6 +38,11 @@ services:
     ports:
       - "8000:80"
     restart: always
+    volumes:
+      - ./czk/trunk/:/var/www/html/wp-content/themes/czk
+      - ./czk-form/trunk/:/var/www/html/wp-content/mu-plugins/czk-form
+      - ./czk-map/trunk/:/var/www/html/wp-content/mu-plugins/czk-map
+      - ./czk-settings/trunk/:/var/www/html/wp-content/mu-plugins/czk-settings
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_USER: wordpress
