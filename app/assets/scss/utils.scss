@@ -156,3 +156,11 @@ body.contrast {
     background: yellow;
   }
 }
+
+body:not(.using-mouse) {
+  :focus {
+    transition: none;
+    outline: 2px solid #000;
+    outline-offset: 3px;
+  }
+}
