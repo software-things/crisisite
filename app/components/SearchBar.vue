@@ -1,51 +1,64 @@
 <template>
   <div class="search-bar">
-    <input v-model="phrase" type="search" id="search" class="search-bar__input" placeholder="Wpisz wyszukiwaną frazę" autofocus>
+    <input
+      v-model="phrase"
+      type="search"
+      id="search"
+      class="search-bar__input"
+      placeholder="Wpisz wyszukiwaną frazę"
+      ref="searchInput"
+      autofocus
+    />
     <label for="search" class="search-bar__label">Wyszukiwarka</label>
-    <nuxt-link :to="`/wyszukiwanie/${prepareLink}`" class="search-bar__redirect">
-      Wyślij
-    </nuxt-link>
+    <nuxt-link :to="`/wyszukiwanie/${prepareLink}`" class="search-bar__redirect">Wyślij</nuxt-link>
+    <div v-if="error" class="search-bar__error">{{ error }}</div>
   </div>
 </template>
 
 <script>
-import Vue from 'vue';
+import Vue from "vue";
 export default {
-  name: 'SearchBar',
+  name: "SearchBar",
   data() {
     return {
-      phrase: ''
-    }
+      phrase: "",
+      error: ""
+    };
   },
   mounted() {
-    window.addEventListener('keyup', this.handleBtns);
+    this.$refs.searchInput.focus();
+    window.addEventListener("keyup", this.handleBtns);
   },
   beforeDestroy() {
-    window.removeEventListener('keyup', this.handleBtns);
+    window.removeEventListener("keyup", this.handleBtns);
   },
   methods: {
     handleBtns(e) {
+      if (this.phrase.length < 3) {
+        this.error = "Szukana fraza musi mieć min. 3 znaki.";
+        return false;
+      }
+      this.error = "";
       if (e.keyCode === 13) {
-        const slug = this.prepareLink
+        const slug = this.prepareLink;
         if (slug) {
           this.$router.push({ path: `/wyszukiwanie/${slug}` });
         }
       }
-
       if (e.keyCode === 27) {
         this.emitClosure();
       }
     },
     emitClosure() {
-      this.$emit('getClosure', false);
-    },
+      this.$emit("getClosure", false);
+    }
   },
   computed: {
-    prepareLink () {
-      return this.phrase.replace(/ /g, '-');
+    prepareLink() {
+      return this.phrase.replace(/ /g, "-");
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -79,8 +92,16 @@ export default {
       color: $font;
     }
 
-    &:focus, &:valid {
+    &:focus,
+    &:valid {
       width: 80%;
+    }
+
+    &::-webkit-search-decoration,
+    &::-webkit-search-cancel-button,
+    &::-webkit-search-results-button,
+    &::-webkit-search-results-decoration {
+      -webkit-appearance: none;
     }
   }
 
@@ -106,6 +127,17 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  &__error {
+    font-size: 12px;
+    position: absolute;
+    bottom: -20px;
+    left: 10px;
+    color: red;
+    @include desktop {
+      left: 20px;
+    }
   }
 }
 </style>

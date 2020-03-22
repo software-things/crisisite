@@ -3,13 +3,17 @@
     <div class="row">
       <div class="columns small-12 large-6">
         <p class="footer__name">{{ content.headline }}</p>
-        <p class="footer__contact">Telefon: <a :href="`tel:${content.phone}`">{{ content.phone }}</a> / E-mail: <a :href="`mailto:${content.email}`">{{ content.email }}</a></p>
+        <p class="footer__contact">
+          Telefon:
+          <a :href="`tel:${content.phone}`">{{ content.phone }}</a> / E-mail:
+          <a :href="`mailto:${content.email}`">{{ content.email }}</a>
+        </p>
       </div>
       <div class="columns small-12 large-6">
         <ul class="footer__menu">
           <li v-for="item in menu" :key="item.ID">
-            <a v-if="item.external" :href="item.slug" class="navigation__element" @click.native="emitClosure">{{ item.name }}</a>
-            <nuxt-link v-else class="navigation__element" @click.native="emitClosure" :to="item.slug">{{ item.name }}</nuxt-link>
+            <a v-if="item.external" :href="item.slug" class="navigation__element">{{ item.name }}</a>
+            <nuxt-link v-else class="navigation__element" :to="item.slug">{{ item.name }}</nuxt-link>
           </li>
         </ul>
       </div>
@@ -18,22 +22,22 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'Footer',
+  name: "Footer",
   computed: {
     ...mapGetters({
-      menu: 'getFooterMenu',
-      content: 'getAdditionalData'
+      menu: "getFooterMenu",
+      content: "getAdditionalData"
     })
   }
-}
+};
 </script>
 
 <style lang="scss">
 .footer {
-  border-top: 2px solid #F4F4F4;
+  border-top: 2px solid #f4f4f4;
   margin-top: 50px;
 
   &__contact {
