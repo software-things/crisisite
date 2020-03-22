@@ -30,3 +30,8 @@ $ yarn build --spa
 # run docker ecosystem (builds WordPress back-end and runs Nuxt app in SSR mode)
 $ docker-compose up --build -d
 ```
+
+## Links
+
+*Dockerhub image* [https://hub.docker.com/r/softwarethings/crisisite](https://hub.docker.com/r/softwarethings/crisisite)
+*Demo* [https://czk.softwarethings.pro](https://czk.softwarethings.pro)
