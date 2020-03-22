@@ -1,0 +1,158 @@
+// Utils | Repeatable:
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  font-size: rem(16px);
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  color: $font;
+}
+
+a,
+button {
+  color: inherit;
+  outline: none;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+button {
+  background: transparent;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-center-mobile {
+  text-align: center;
+
+  @include desktop {
+    text-align: left;
+  }
+}
+
+.text-center-desktop {
+  @include desktop {
+    text-align: center;
+  }
+}
+
+.text-right-desktop {
+  @include desktop {
+    text-align: right;
+  }
+}
+
+.relative {
+  position: relative;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.hide-small {
+  display: none;
+
+  @include desktop {
+    display: block;
+  }
+}
+
+.hide-tablet {
+  @include tablet {
+    display: none;
+  }
+}
+
+.hide-until-tablet {
+  display: none;
+
+  @include tablet {
+    display: initial;
+  }
+}
+
+.hide-large {
+  @include desktop {
+    display: none;
+  }
+}
+
+.line {
+  border-bottom: 1px solid #DDDDDD;
+}
+
+.link {
+  color: $link;
+}
+
+body.contrast {
+  background: yellow;
+  color: black;
+
+  a {
+    color: black;
+  }
+  .header,
+  .navigation {
+    background: yellow;
+    border: 1px solid black;
+  }
+  
+  .footer {
+    background: yellow;
+    border-color: black;
+  }
+  
+  .line {
+    border-bottom: 1px solid black;
+  }
+
+  .header__warning {
+    background: yellow;
+    border-top: 1px solid black;
+  }
+
+  .pagination {
+    &__button {
+      color: black;
+    }
+  }
+  input, select, textarea {
+    background: yellow;
+
+    &::placeholder {
+      color: black;
+    }
+  }
+
+  .search-bar__input {
+    background: yellow;
+  }
+}

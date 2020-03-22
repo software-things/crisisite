@@ -1,0 +1,27 @@
+{
+  "name": "Hackcrisis",
+  "version": "1.0.0",
+  "description": "Local website for COVID-19 crisis",
+  "author": "Kaczuchy",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "formvuelatte": "^0.2.3",
+    "foundation-sites": "^6.5.3",
+    "nuxt": "^2.0.0",
+    "nuxt-leaflet": "^0.0.21",
+    "sass-loader": "^8.0.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/style-resources": "^1.0.0",
+    "node-sass": "^4.12.0",
+    "nodemon": "^1.18.9",
+    "sass-loader": "^8.0.0"
+  }
+}
