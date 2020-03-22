@@ -25,11 +25,7 @@ export default {
   components: {
     SchemaForm
   },
-  props: {
-    data: {
-      type: Object
-    }
-  },
+  props: ["data"],
   data() {
     return {
       userData: {},

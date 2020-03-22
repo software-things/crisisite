@@ -43,13 +43,11 @@ export default {
   mounted() {
     if (process.client) {
       document.body.addEventListener("mousedown", function() {
-        document.body.classList.add("using-mouse");
+        document.body.classList.remove("using-keyboard");
       });
 
       document.body.addEventListener("keydown", function(event) {
-        if (event.keyCode === 9) {
-          document.body.classList.remove("using-mouse");
-        }
+        document.body.classList.add("using-keyboard");
       });
     }
   }

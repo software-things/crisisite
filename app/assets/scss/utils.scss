@@ -157,7 +157,7 @@ body.contrast {
   }
 }
 
-body:not(.using-mouse) {
+.using-keyboard {
   :focus {
     transition: none;
     outline: 2px solid #000;
