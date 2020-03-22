@@ -205,7 +205,7 @@ export default {
   &__icon,
   &__bip {
     &:hover {
-      filter: drop-shadow(0 0 5px #ffc605);
+      filter: drop-shadow(0 0 5px $warning);
     }
   }
 
