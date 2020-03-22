@@ -201,6 +201,14 @@ export default {
     height: 40px;
   }
 
+  &__resize button,
+  &__icon,
+  &__bip {
+    &:hover {
+      filter: drop-shadow(0 0 5px #ffc605);
+    }
+  }
+
   &__center {
     display: flex;
     align-items: center;
