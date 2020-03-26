@@ -4,13 +4,10 @@
     display: flex;
     justify-content: space-between;
   }
-  & > a {
-    &:after {
-      color: #555555;
-      content: attr(data-details);
-      display: block;
-      font-size: rem(12px);
-    }
+  &__details {
+    color: #555555;
+    display: block;
+    font-size: rem(12px);
   }
   &__button {
     border: 2px solid $link;
