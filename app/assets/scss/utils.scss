@@ -34,6 +34,9 @@ button {
 
 a {
   text-decoration: none;
+  &:active {
+    color: lighten($link, 20%);
+  }
 }
 
 .text-left {
