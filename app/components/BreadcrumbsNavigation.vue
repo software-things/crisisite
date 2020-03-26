@@ -17,6 +17,11 @@
       display: flex;
       align-items: center;
       margin: 0 2px;
+
+      &:first-of-type {
+        margin-left: 0;
+      }
+
       img {
         margin-right: 5px;
       }

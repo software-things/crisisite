@@ -1,7 +1,7 @@
 <template>
   <nuxt-link
     class="thumb"
-    :class="{ 'line' : first }"
+    :class="{ 'line thumb__first' : first }"
     :to="post.isItPage ?`/${post.slug}` : `/komunikaty/${post.slug}`"
     :title="`Czytaj: ${post.title}`"
   >
@@ -68,6 +68,14 @@ export default {
     @include desktop {
       height: 90px;
       overflow: hidden;
+    }
+  }
+
+  &__first {
+    .thumb__title {
+      @include desktop {
+        height: initial;
+      }
     }
   }
 }

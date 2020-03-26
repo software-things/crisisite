@@ -68,6 +68,10 @@ export default {
     color: $link;
     padding-left: 0;
 
+    li > a {
+      padding-left: 0;
+    }
+
     @include desktop {
       text-align: right;
     }

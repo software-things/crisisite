@@ -8,9 +8,9 @@
       <div class="columns large-3 layout__navigation">
         <PageNavigation />
       </div>
-      <div class="columns small-12 large-8">
+      <main class="columns small-12 large-8">
         <nuxt />
-      </div>
+      </main>
     </div>
     <PageFooter />
   </div>

@@ -152,6 +152,7 @@ export default {
   &__flex {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     font-weight: 700;
     position: sticky;
     top: 0;
@@ -166,12 +167,6 @@ export default {
     div,
     & > a {
       padding: 0 8px;
-    }
-  }
-
-  &__tablet {
-    @include tablet {
-      justify-content: space-between;
     }
   }
 
