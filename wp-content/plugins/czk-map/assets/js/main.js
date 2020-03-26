@@ -1,9 +1,9 @@
 jQuery(document).ready(function () {
-    const container =  jQuery('#czk_map');
+    const container = jQuery('#czk_map');
     container.addClass('closed');
     const post_id = jQuery('#post_ID').val();
     const data = jQuery('#map').data('markers');
-    let markers = data ? data.markers : [];
+    let markers = data && data.markers ? data.markers : [];
     const handleChange = () => {
         wp.ajax.post('update_czk_map', {
             post_id,
@@ -11,17 +11,33 @@ jQuery(document).ready(function () {
             markers
         });
     };
+    const handleDrag = (e) => {
+        const mIndex = jQuery(e.target.getPopup()['_content']).wrap('<div></div>').parent().find('[data-index]').data('index');
+        const mLng = e.target.getLatLng()['lng'].toString();
+        const mLat = e.target.getLatLng()['lat'].toString();
+        markers.map((marker, index) => {
+            if (index === mIndex) {
+                marker.lng = mLng;
+                marker.lat = mLat;
+                return marker;
+            }
+        });
+        handleChange();
+    }
     const handleMarkersSeeding = () => {
         markersLayer.clearLayers();
         markers.map((marker, index) => {
-            markersLayer.addLayer(L.marker([marker.lat, marker.lng])
-                .bindPopup(`
+            let markerHandler = L.marker([marker.lat, marker.lng], {
+                draggable: true
+            }).bindPopup(`
                     <div style="text-align: center" data-index="${index}">
                         <input type="text" value="${marker.address}"><br><br>
                         <button type="button" class="marker-update button button-small">Zapisz</button>
                         <button type="button" class="marker-delete button button-small">Usuń</button>
                     </div>
-                `).openPopup());
+            `).openPopup();
+            markersLayer.addLayer(markerHandler);
+            markerHandler.on("dragend", handleDrag);
         });
     };
     const map = L.map('map', {
@@ -53,6 +69,7 @@ jQuery(document).ready(function () {
                 address: address
             });
             handleChange();
+            handleMarkersSeeding();
         }
     });
 

@@ -2,7 +2,7 @@
   <nav class="navigation">
     <ul class="navigation__menu">
       <li @click="emitClosure" v-for="item in menu" :key="item.ID">
-        <a v-if="item.external" :href="item.slug" class="navigation__element" >{{ item.name }}</a>
+        <a v-if="item.external" :href="item.slug" class="navigation__element">{{ item.name }}</a>
         <nuxt-link v-else class="navigation__element" :to="item.slug">{{ item.name }}</nuxt-link>
       </li>
     </ul>
@@ -10,20 +10,20 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
-  methods:{
+  methods: {
     emitClosure() {
-      this.$emit('navigation-clicked', false);
+      this.$emit("navigation-clicked", false);
     }
   },
   computed: {
     ...mapGetters({
-      menu: 'getMainMenu'
+      menu: "getMainMenu"
     })
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -43,7 +43,7 @@ export default {
     padding: 20px 0;
     margin-top: 15px;
   }
-  
+
   &__menu {
     margin: 0;
     padding: 0;
@@ -61,8 +61,7 @@ export default {
     display: inline-block;
     color: $link;
     font-weight: 400;
-    padding-bottom: 10px;
-    padding-left: 50px;
+    padding: 0 20px 10px;
 
     @include desktop {
       &:hover {
