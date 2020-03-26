@@ -57,6 +57,9 @@ export default {
     width: 100%;
     img {
       object-fit: cover;
+      object-position: center;
+      height: 250px;
+      width: 100%;
       transition: 0.4s;
     }
   }

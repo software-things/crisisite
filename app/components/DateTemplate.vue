@@ -10,6 +10,7 @@
     display: flex;
     font-size: rem(14px);
     margin-bottom: 5px;
+    align-items: center;
 
     p {
       margin: 0;
