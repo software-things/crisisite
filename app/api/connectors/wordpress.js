@@ -15,6 +15,10 @@ export default class WordPressApi {
         external: el.type === 'custom'
       }
 
+      if (el.url === '/') {
+        LINK_OBJ = { ...LINK_OBJ, ...{ slug: '/', external: false } }
+      }
+
       return LINK_OBJ;
     });
   }
