@@ -56,7 +56,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: 'https://czk.softwarethings.pro/wordpress/wp-json/'
+    baseURL: 'https://pgg.softwarethings.pro/wordpress/wp-json/'
   },
   /*
   ** Build configuration
