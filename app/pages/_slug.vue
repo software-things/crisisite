@@ -24,6 +24,7 @@ export default {
   },
   mixins: [excerpt],
   head() {
+    if (!this.page) return this.$router.push({ path: `/error` });
     return {
       title: this.page.title,
       meta: [
