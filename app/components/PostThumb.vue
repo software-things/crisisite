@@ -1,17 +1,22 @@
 <template>
-  <nuxt-link
-    class="thumb"
-    :class="{ 'line thumb__first' : first }"
-    :to="post.isItPage ?`/${post.slug}` : `/komunikaty/${post.slug}`"
-    :title="`Czytaj: ${post.title}`"
-  >
+  <div class="thumb" :class="{ 'line thumb__first' : first }">
     <DateTemplate :date="post.date" />
-    <p class="thumb__title">{{ post.title }}</p>
+    <nuxt-link
+      :to="post.isItPage ?`/${post.slug}` : `/komunikaty/${post.slug}`"
+      :title="`Czytaj: ${post.title}`"
+    >
+      <h2 class="thumb__title">{{ post.title }}</h2>
+    </nuxt-link>
     <div v-if="post.featured_image" class="thumb__image">
-      <img :src="post.featured_image" :alt="post.featured_image_alt" />
+      <nuxt-link
+        :to="post.isItPage ?`/${post.slug}` : `/komunikaty/${post.slug}`"
+        :title="`Czytaj: ${post.title}`"
+      >
+        <img :src="post.featured_image" :alt="post.featured_image_alt" />
+      </nuxt-link>
     </div>
     <div v-if="post.excerpt" class="thumb__excerpt" v-html="post.excerpt"></div>
-  </nuxt-link>
+  </div>
 </template>
 
 <script>
@@ -28,10 +33,10 @@ export default {
 
 <style lang="scss">
 .thumb {
-  margin-top: 20px;
   display: block;
-  width: 100%;
+  margin-top: 20px;
   padding-bottom: 20px;
+  width: 100%;
 
   @include desktop {
     &:hover {
@@ -42,10 +47,11 @@ export default {
   }
 
   &__title {
+    color: $font;
     font-size: rem(20px);
     font-weight: 700;
-    margin: 0;
     margin-bottom: 10px;
+    margin: 0;
 
     @include desktop {
       height: 65px;
@@ -56,11 +62,11 @@ export default {
   &__image {
     width: 100%;
     img {
+      height: 250px;
       object-fit: cover;
       object-position: center;
-      height: 250px;
-      width: 100%;
       transition: 0.4s;
+      width: 100%;
     }
   }
 

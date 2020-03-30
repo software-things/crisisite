@@ -10,7 +10,7 @@
       autofocus
     />
     <label for="search" class="search-bar__label">Wyszukiwarka</label>
-    <nuxt-link :to="`/wyszukiwanie/${prepareLink}`" class="search-bar__redirect">Wyślij</nuxt-link>
+    <button class="search-bar__redirect" @click="handleBtns({ keyCode : 13 })">Szukaj</button>
     <div v-if="error" class="search-bar__error">{{ error }}</div>
   </div>
 </template>
