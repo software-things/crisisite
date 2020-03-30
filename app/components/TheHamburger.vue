@@ -1,47 +1,53 @@
 <template>
-  <button :class="['hamburger', { 'hamburger--visible': menuVisible }]" @click="menuClick" title="Rozwiń menu" type="button">
-    <div class="hamburger__stripe"></div>
-    <div class="hamburger__stripe"></div>
-    <div class="hamburger__stripe"></div>
+  <button
+    :class="['hamburger', { 'hamburger--visible': menuVisible }]"
+    @click="menuClick"
+    title="Rozwiń menu"
+    type="button"
+  >
+    <span class="hamburger__stripe"></span>
+    <span class="hamburger__stripe"></span>
+    <span class="hamburger__stripe"></span>
   </button>
 </template>
 
 <script>
 export default {
-  props: ['menuVisible'],
+  props: ["menuVisible"],
   methods: {
     menuClick() {
       const switcher = !this.menuVisible;
-      this.$emit('hamburger-clicked', switcher);
-    },
-  },
-}
+      this.$emit("hamburger-clicked", switcher);
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
 .hamburger {
-  padding: 0;
-  display: block;
-  z-index: 15;
-  width: 45px;
-  height: 45px;
-  text-align: center;
   background: transparent;
   border: none;
+  display: block;
+  height: 45px;
   outline: none;
-  text-align: center;
+  padding: 0;
   position: relative;
+  text-align: center;
+  text-align: center;
+  width: 45px;
+  z-index: 15;
 
   @include desktop {
     display: none;
   }
 
   &__stripe {
-    width: 80%;
+    background-color: $font;
+    display: block;
     height: 2px;
     margin: 8px 3px;
     transition: transform 300ms ease, opacity 500ms ease, visibility 500ms ease;
-    background-color: $font;
+    width: 80%;
 
     @include desktop {
       height: 4px;
@@ -58,30 +64,29 @@ export default {
 
   &__text {
     color: white;
-    text-transform: uppercase;
     font-size: 9px;
+    text-transform: uppercase;
     transition: transform 300ms ease, opacity 500ms ease, visibility 500ms ease;
   }
 
   &--visible {
     .hamburger__stripe {
       &:nth-child(1) {
-        transform: rotate(45deg) translate(2px, -4px);
         top: 0;
         transform-origin: left center;
+        transform: rotate(45deg) translate(2px, -4px);
         @include desktop {
           transform: rotate(45deg) translate(0, 0);
-          
         }
       }
       &:nth-child(2) {
-        transform: translateX(100%);
         opacity: 0;
+        transform: translateX(100%);
         visibility: hidden;
       }
       &:nth-child(3) {
-        transform: rotate(-45deg) translate(0px, 4px);
         transform-origin: left center;
+        transform: rotate(-45deg) translate(0px, 4px);
       }
     }
   }
