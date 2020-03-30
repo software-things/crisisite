@@ -1,5 +1,16 @@
 <template>
   <header class="header">
+    <ul class="skip">
+      <li>
+        <a href="#main-menu" class="inner">Przejdź do menu głównego</a>
+      </li>
+      <li>
+        <a href="#content-main" class="inner">Przejdź do treści</a>
+      </li>
+      <li>
+        <router-link to="/mapa-strony#sitemap">Mapa serwisu</router-link>
+      </li>
+    </ul>
     <div class="row header__row">
       <div class="columns small-12 large-2 header__center">
         <nuxt-link to="/">
@@ -141,14 +152,12 @@ export default {
   }
   &__page-title {
     font-weight: 700;
-
     @include desktop {
       width: 100%;
       padding-top: 0px;
       text-align: center;
     }
   }
-
   &__flex {
     display: flex;
     align-items: center;
@@ -162,21 +171,18 @@ export default {
     @include desktop {
       justify-content: flex-end;
     }
-
     & > button,
     div,
     & > a {
       padding: 0 8px;
     }
   }
-
   &__resize {
     font-size: rem(23px);
     button {
       padding: 0px;
     }
   }
-
   &__warning {
     width: 100%;
     background: $warning;
@@ -187,15 +193,12 @@ export default {
       margin: 0;
     }
   }
-
   &__icon {
     height: 27px;
   }
-
   &__bip {
     height: 40px;
   }
-
   &__resize button,
   &__icon,
   &__bip {
@@ -203,10 +206,41 @@ export default {
       filter: drop-shadow(0 0 5px $warning);
     }
   }
-
   &__center {
     display: flex;
     align-items: center;
+  }
+  .skip {
+    list-style: none;
+    position: absolute;
+    top: 0;
+    a {
+      display: block;
+      left: -9000em;
+      opacity: 0;
+      position: absolute;
+      text-align: center;
+      text-decoration: none;
+      top: 0;
+      transition: opacity 0.3s ease 0s;
+      &:hover,
+      &:focus,
+      &:active,
+      &:visited:hover,
+      &:visited:focus,
+      &:visited:active {
+        background: $link;
+        color: #fff;
+        font-size: em(15px);
+        left: 10px;
+        opacity: 1;
+        outline: 2px solid $link;
+        padding: 10px;
+        top: 10px;
+        white-space: nowrap;
+        z-index: 10;
+      }
+    }
   }
 }
 </style>

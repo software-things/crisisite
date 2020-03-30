@@ -5,10 +5,10 @@
       <div class="columns small-12">
         <BreadcrumbsNavigation />
       </div>
-      <div class="columns large-3 layout__navigation">
+      <div id="main-menu" class="columns large-3 layout__navigation">
         <PageNavigation />
       </div>
-      <main class="columns small-12 large-8">
+      <main id="content-main" class="columns small-12 large-8">
         <nuxt />
       </main>
     </div>
