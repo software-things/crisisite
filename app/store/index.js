@@ -29,6 +29,15 @@ export const actions = {
     commit('SET_MAIN_MENU', await api.getMainMenu());
     commit('SET_FOOTER_MENU', await api.getFooterMenu());
     commit('SET_ADDITIONAL_DATA', await api.getAdditionalData());
+  },
+  async nuxtClientInit(vuex, app) {
+    let api = new API(app.$axios);
+    
+    vuex.commit('SET_POSTS', await api.getPosts());
+    vuex.commit('SET_PAGES', await api.getPages());
+    vuex.commit('SET_MAIN_MENU', await api.getMainMenu());
+    vuex.commit('SET_FOOTER_MENU', await api.getFooterMenu());
+    vuex.commit('SET_ADDITIONAL_DATA', await api.getAdditionalData());
   }
 }
 
