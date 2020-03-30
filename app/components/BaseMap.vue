@@ -8,7 +8,11 @@
         :key="index"
         :lat-lng="[marker.lat, marker.lng]"
       >
-        <l-popup>{{ marker.address }}</l-popup>
+        <l-popup>
+          <strong>{{ marker.address }}</strong>
+          <br />
+          {{ marker.content }}
+        </l-popup>
       </l-marker>
     </l-map>
   </div>

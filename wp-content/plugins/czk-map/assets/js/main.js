@@ -31,7 +31,8 @@ jQuery(document).ready(function () {
                 draggable: true
             }).bindPopup(`
                     <div style="text-align: center" data-index="${index}">
-                        <input type="text" value="${marker.address}"><br><br>
+                        <input style="width: 300px" type="text" value="${marker.address}"><br><br>
+                        <textarea style="width: 300px" rows="4">${marker.content}</textarea><br><br>
                         <button type="button" class="marker-update button button-small">Zapisz</button>
                         <button type="button" class="marker-delete button button-small">Usuń</button>
                     </div>
@@ -66,7 +67,8 @@ jQuery(document).ready(function () {
             markers.push({
                 lat: coordinates.lat,
                 lng: coordinates.lng,
-                address: address
+                address: address,
+                content: '',
             });
             handleChange();
             handleMarkersSeeding();
@@ -93,6 +95,7 @@ jQuery(document).ready(function () {
         markers.map((marker, i) => {
             if (i === index) {
                 marker.address = jQuery(this).parent().find('input').val();
+                marker.content = jQuery(this).parent().find('textarea').val();
             }
             return marker;
         });
