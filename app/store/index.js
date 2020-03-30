@@ -33,28 +33,28 @@ export const actions = {
 }
 
 export const mutations = {
-	SET_POSTS (state, posts) {
-		state.posts = posts
+  SET_POSTS(state, posts) {
+    state.posts = posts
   },
-	SET_PAGES (state, pages) {
-		state.pages = pages
+  SET_PAGES(state, pages) {
+    state.pages = pages
   },
-	SET_MAIN_MENU (state, mainMenu) {
-		state.mainMenu = mainMenu
+  SET_MAIN_MENU(state, mainMenu) {
+    state.mainMenu = mainMenu
   },
-	SET_FOOTER_MENU (state, footerMenu) {
-		state.footerMenu = footerMenu
+  SET_FOOTER_MENU(state, footerMenu) {
+    state.footerMenu = footerMenu
   },
-	SET_ADDITIONAL_DATA (state, additionalData) {
-		state.additionalData = additionalData
+  SET_ADDITIONAL_DATA(state, additionalData) {
+    state.additionalData = additionalData
   },
-  FONT_SIZE (state, size) {
+  FONT_SIZE(state, size) {
     state.wcag.fontSize = size
   },
-  CONTRAST (state, status) {
+  CONTRAST(state, status) {
     state.wcag.contrast = status
   },
-  BREADCRUMBS (state, status) {
+  BREADCRUMBS(state, status) {
     const breadcrumbs = [
       {
         href: '/',
@@ -67,19 +67,19 @@ export const mutations = {
 }
 
 export const getters = {
-  getAllPosts (state) {
+  getAllPosts(state) {
     return state.posts
   },
-  getAllPages (state) {
+  getAllPages(state) {
     return state.pages
   },
   getMainMenu(state) {
     return state.mainMenu
   },
-  getFooterMenu (state) {
+  getFooterMenu(state) {
     return state.footerMenu
   },
-  getAdditionalData (state) {
+  getAdditionalData(state) {
     return state.additionalData
   },
   getPostBySlug: (state) => (param) => {

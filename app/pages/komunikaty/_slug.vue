@@ -7,6 +7,7 @@
 <script>
 import { mapGetters } from "vuex";
 import ArticleComponent from "~/components/ArticleComponent";
+import excerpt from "~/mixins/excerpt.js";
 
 export default {
   name: "SinglePost",
@@ -40,6 +41,19 @@ export default {
       ];
       this.$store.commit("BREADCRUMBS", breadcrumbs);
     }
+  },
+  mixins: [excerpt],
+  head() {
+    return {
+      title: this.post.title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.excerpt(this.post.content)
+        }
+      ]
+    };
   }
 };
 </script>

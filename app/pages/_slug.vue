@@ -7,6 +7,7 @@
 <script>
 import { mapGetters } from "vuex";
 import ArticleComponent from "~/components/ArticleComponent";
+import excerpt from "~/mixins/excerpt.js";
 
 export default {
   name: "Page",
@@ -21,9 +22,17 @@ export default {
       return this.getPagesBySlug(this.$route.params.slug);
     }
   },
+  mixins: [excerpt],
   head() {
     return {
-      title: this.page.title
+      title: this.page.title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.excerpt(this.page.content)
+        }
+      ]
     };
   },
   mounted() {
