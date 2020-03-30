@@ -1,7 +1,7 @@
 <template>
   <div class="error">
     <h1>{{ title }}</h1>
-    <p>Ups! Nikogo tu nie ma!</p>
+    <p>Strona nie została znaleziona.</p>
     <nuxt-link to="/" class="btn">Przejdź do strony głównej</nuxt-link>
   </div>
 </template>
