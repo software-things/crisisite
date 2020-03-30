@@ -68,7 +68,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      posts: "getAllPosts"
+      posts: "getAllPosts",
+      default: "getAdditionalData"
     }),
     allPages() {
       return Math.ceil(this.posts.length / this.perPage);
@@ -97,6 +98,18 @@ export default {
       ];
       this.$store.commit("BREADCRUMBS", breadcrumbs);
     }
+  },
+  head() {
+    return {
+      title: this.default.page_title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.default.page_description
+        }
+      ]
+    };
   }
 };
 </script>
