@@ -159,6 +159,13 @@ body.contrast {
   .search-bar__input {
     background: yellow;
   }
+
+  .header,
+  .header__facilities,
+  .header__formatting--active {
+    background: yellow;
+    border: 1px solid black;
+  }
 }
 
 .using-keyboard {

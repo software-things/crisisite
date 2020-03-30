@@ -45,18 +45,86 @@
                 alt="Wyszukaj w serwisie"
               />
             </button>
-            <div class="header__resize">
-              <button type="button" @click.prevent="fontSize('down')">-</button>
-              <button type="button" @click.prevent="fontSize('default')">A</button>
-              <button type="button" @click.prevent="fontSize('up')">+</button>
-            </div>
-            <button type="button" @click.prevent="toggleContrast">
+            <button type="button" @click.prevent="setWCAG('contrast') " title="Wersja kontrastowa">
               <img
                 class="header__icon"
                 src="~/assets/img/icons/contrast.svg"
                 alt="Wersja kontrastowa"
               />
             </button>
+            <div class="header__formatting">
+              <button
+                type="button"
+                @click.prevent="toggleTextFormat"
+                title="Wersja dla niedowidzących"
+              >
+                <img
+                  class="header__icon header__icon--eye"
+                  src="~/assets/img/icons/eye.svg"
+                  alt="Opcje formatowania tekstu"
+                />
+              </button>
+              <div v-if="formatingVisible" class="header__formatting--active">
+                <div>
+                  <button
+                    type="button"
+                    @click.prevent="setWCAG('fontSize', 'down')"
+                    title="Zmniejsz rozmiar tekstu"
+                  >
+                    <img
+                      src="~/assets/img/icons/formatting/minus.svg"
+                      alt="Zmniejsz rozmiar tekstu"
+                    />
+                  </button>
+                  <button
+                    type="button"
+                    @click.prevent="setWCAG('fontSize', 'default')"
+                    titl="Zresetuj rozmiar tekstu"
+                  >
+                    <img
+                      src="~/assets/img/icons/formatting/reset.svg"
+                      alt="Zresetuj rozmiar tekstu"
+                    />
+                  </button>
+                  <button
+                    type="button"
+                    @click.prevent="setWCAG('fontSize', 'up')"
+                    title="Powiększ rozmiar tekstu"
+                  >
+                    <img src="~/assets/img/icons/formatting/plus.svg" alt="Powiększ rozmiar tekstu" />
+                  </button>
+                </div>
+                <div>
+                  <button
+                    type="button"
+                    @click.prevent="setWCAG('lineHeight') "
+                    title="Odstępy między wierszami"
+                  >
+                    <img
+                      src="~/assets/img/icons/formatting/line-height.svg"
+                      alt="Odstępy między wierszami"
+                    />
+                  </button>
+                  <button
+                    type="button"
+                    @click.prevent="setWCAG('wordSpacing')"
+                    title="Odstępy między slowami"
+                  >
+                    <img src="~/assets/img/icons/formatting/space.svg" alt="Odstępy między slowami" />
+                  </button>
+                  <button
+                    type="button"
+                    @click.prevent="setWCAG('letterSpacing')"
+                    title="Odstępy między literami"
+                  >
+                    <img
+                      src="~/assets/img/icons/formatting/letter-spacing.svg"
+                      alt="Odstępy między literami"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
             <nuxt-link to="/informacja-dla-osob-nieslyszacych">
               <img
                 class="header__icon"
@@ -96,7 +164,8 @@ export default {
   data() {
     return {
       menuVisible: false,
-      searchBarVisible: false
+      searchBarVisible: false,
+      formatingVisible: false
     };
   },
   components: {
@@ -119,16 +188,30 @@ export default {
       if (option === "default") {
         fontSize = 100;
       }
-      this.$store.commit("FONT_SIZE", fontSize);
-    },
-    toggleContrast() {
-      this.$store.commit("CONTRAST", !this.$store.state.wcag.contrast);
+      return fontSize;
     },
     showSearchBar() {
       this.searchBarVisible = !this.searchBarVisible;
     },
     closeSearchEngine(value) {
       this.searchBarVisible = value;
+    },
+    setWCAG(type, fontResizeOption) {
+      if (fontResizeOption) {
+        const fontSize = this.fontSize(fontResizeOption);
+        this.$store.commit("SET_WCAG", { type: type, value: fontSize });
+      } else {
+        this.$store.commit("SET_WCAG", {
+          type: type,
+          value: !this.$store.state.wcag[type]
+        });
+      }
+    },
+    toggleTextFormat() {
+      this.formatingVisible = !this.formatingVisible;
+    },
+    showSearchBar() {
+      this.searchBarVisible = !this.searchBarVisible;
     }
   },
   watch: {
@@ -239,6 +322,42 @@ export default {
         top: 10px;
         white-space: nowrap;
         z-index: 10;
+      }
+    }
+  }
+  &__formatting {
+    position: relative;
+
+    &--active {
+      position: absolute;
+      bottom: -79px;
+      left: 0;
+      background: #fff;
+      padding: 5px 10px;
+      width: 155px;
+
+      @include desktop {
+        width: 155px;
+        padding: 5px 20px;
+      }
+
+      div {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      button {
+        margin-bottom: 10px;
+
+        img {
+          @include desktop {
+            transition: 0.3s;
+            &:hover {
+              filter: drop-shadow(0 0 5px $warning);
+            }
+          }
+        }
       }
     }
   }

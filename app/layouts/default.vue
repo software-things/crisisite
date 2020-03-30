@@ -33,10 +33,20 @@ export default {
   head() {
     return {
       bodyAttrs: {
-        class: this.$store.state.wcag.contrast ? "contrast" : ""
+        class: this.$store.state.wcag.contrast ? "contrast" : "",
+        style: `line-height: ${
+          this.$store.state.wcag.lineHeight ? "1.6" : "1.37"
+        };`
       },
       htmlAttrs: {
-        style: `font-size: ${this.$store.state.wcag.fontSize}%`
+        style: `font-size: ${this.$store.state.wcag.fontSize}%;
+        letter-spacing: ${
+          this.$store.state.wcag.letterSpacing ? "1.6px" : "initial"
+        };
+        line-height: ${this.$store.state.wcag.lineHeight ? "3" : "initial"};
+        word-spacing: ${
+          this.$store.state.wcag.wordSpacing ? "1.2em" : "normal"
+        };`
       }
     };
   },

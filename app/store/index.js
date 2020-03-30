@@ -6,7 +6,10 @@ export const state = () => ({
   footerMenu: null,
   wcag: {
     fontSize: 100,
-    contrast: false
+    contrast: false,
+    lineHeight: false,
+    wordSpacing: false,
+    letterSpacing: false,
   },
   breadcrumbs: [
     {
@@ -48,12 +51,6 @@ export const mutations = {
   SET_ADDITIONAL_DATA(state, additionalData) {
     state.additionalData = additionalData
   },
-  FONT_SIZE(state, size) {
-    state.wcag.fontSize = size
-  },
-  CONTRAST(state, status) {
-    state.wcag.contrast = status
-  },
   BREADCRUMBS(state, status) {
     const breadcrumbs = [
       {
@@ -63,6 +60,9 @@ export const mutations = {
     ]
     breadcrumbs.push(...status)
     state.breadcrumbs = breadcrumbs
+  },
+  SET_WCAG(state, param) {
+    state.wcag[param.type] = param.value
   }
 }
 
