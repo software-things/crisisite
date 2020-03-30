@@ -33,6 +33,7 @@ button {
 }
 
 a {
+  color: $link;
   text-decoration: none;
   &:active {
     color: lighten($link, 20%);
