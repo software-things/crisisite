@@ -31,8 +31,11 @@ jQuery(document).ready(function () {
                 draggable: true
             }).bindPopup(`
                     <div style="text-align: center" data-index="${index}">
-                        <input style="width: 300px" type="text" value="${marker.address}"><br><br>
-                        <textarea style="width: 300px" rows="4">${marker.content}</textarea><br><br>
+                        <input name="address" style="width: 300px" type="text" placeholder="...nazwa / adres" value="${marker.address}"><br><br>
+                        <input name="phone" style="width: 300px" type="text" placeholder="...telefon" value="${marker.phone}"><br><br>
+                        <input name="www" style="width: 300px" type="url" placeholder="...strona www" value="${marker.www}"><br><br>
+                        <input name="email" style="width: 300px" type="email" placeholder="...adres e-mail" value="${marker.email}"><br><br>
+                        <textarea style="width: 300px" rows="4" placeholder="...opis">${marker.content}</textarea><br><br>
                         <button type="button" class="marker-update button button-small">Zapisz</button>
                         <button type="button" class="marker-delete button button-small">Usuń</button>
                     </div>
@@ -68,6 +71,9 @@ jQuery(document).ready(function () {
                 lat: coordinates.lat,
                 lng: coordinates.lng,
                 address: address,
+                phone: '',
+                www: '',
+                email: '',
                 content: '',
             });
             handleChange();
@@ -94,7 +100,10 @@ jQuery(document).ready(function () {
         const index = jQuery(this).parent().data('index');
         markers.map((marker, i) => {
             if (i === index) {
-                marker.address = jQuery(this).parent().find('input').val();
+                marker.address = jQuery(this).parent().find('input[name="address"]').val();
+                marker.phone = jQuery(this).parent().find('input[name="phone"]').val();
+                marker.www = jQuery(this).parent().find('input[name="www"]').val();
+                marker.email = jQuery(this).parent().find('input[name="email"]').val();
                 marker.content = jQuery(this).parent().find('textarea').val();
             }
             return marker;

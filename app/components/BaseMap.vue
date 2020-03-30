@@ -9,9 +9,7 @@
         :lat-lng="[marker.lat, marker.lng]"
       >
         <l-popup>
-          <strong>{{ marker.address }}</strong>
-          <br />
-          {{ marker.content }}
+          <div v-html="markerDescription(marker)"></div>
         </l-popup>
       </l-marker>
     </l-map>
@@ -36,6 +34,29 @@ export default {
         })
       )
     };
+  },
+  methods: {
+    markerDescription(marker) {
+      const rows = [];
+      if (marker.address) {
+        rows.push(`<strong>${marker.address}</strong>`);
+      }
+      if (marker.phone) {
+        rows.push(`<strong>Telefon:</strong> ${marker.phone}`);
+      }
+      if (marker.www) {
+        rows.push(`<strong>Strona www:</strong> ${marker.www}`);
+      }
+      if (marker.email) {
+        rows.push(`<strong>E-mail:</strong> ${marker.email}`);
+      }
+      if (marker.content) {
+        rows.push(
+          `<strong>Dodatkowe informacje:</strong><br> ${marker.content}`
+        );
+      }
+      return rows.join("<br>");
+    }
   }
 };
 </script>
