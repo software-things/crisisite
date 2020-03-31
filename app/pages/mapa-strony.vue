@@ -31,8 +31,21 @@ export default {
   computed: {
     ...mapGetters({
       posts: "getAllPosts",
-      pages: "getAllPages"
+      pages: "getAllPages",
+      default: "getAdditionalData"
     })
+  },
+  head() {
+    return {
+      title: "Mapa Strony",
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.default.page_description
+        }
+      ]
+    };
   }
 };
 </script>

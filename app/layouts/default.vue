@@ -5,10 +5,10 @@
       <div class="columns small-12">
         <BreadcrumbsNavigation />
       </div>
-      <div class="columns large-3 layout__navigation">
+      <div id="main-menu" class="columns large-3 layout__navigation">
         <PageNavigation />
       </div>
-      <main class="columns small-12 large-8">
+      <main id="content-main" class="columns small-12 large-8">
         <nuxt />
       </main>
     </div>
@@ -33,10 +33,20 @@ export default {
   head() {
     return {
       bodyAttrs: {
-        class: this.$store.state.wcag.contrast ? "contrast" : ""
+        class: this.$store.state.wcag.contrast ? "contrast" : "",
+        style: `line-height: ${
+          this.$store.state.wcag.lineHeight ? "1.6" : "1.37"
+        };`
       },
       htmlAttrs: {
-        style: `font-size: ${this.$store.state.wcag.fontSize}%`
+        style: `font-size: ${this.$store.state.wcag.fontSize}%;
+        letter-spacing: ${
+          this.$store.state.wcag.letterSpacing ? "1.6px" : "initial"
+        };
+        line-height: ${this.$store.state.wcag.lineHeight ? "3" : "initial"};
+        word-spacing: ${
+          this.$store.state.wcag.wordSpacing ? "1.2em" : "normal"
+        };`
       }
     };
   },

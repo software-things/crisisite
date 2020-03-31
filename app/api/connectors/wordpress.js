@@ -40,7 +40,6 @@ export default class WordPressApi {
   _prepareArticles(RESPONSE) {
     return RESPONSE.map((post) => {
       let transformedPost;
-
       transformedPost = {
         id: post.id,
         title: post.title.rendered,
@@ -54,10 +53,8 @@ export default class WordPressApi {
         form: post.czk_form,
         isItPage: post.type === 'page'
       }
-
       return transformedPost;
     });
-
   }
 
   async getPosts() {

@@ -11,29 +11,32 @@
       </div>
     </div>
     <div v-else class="row">
-      <div class="columns small-12">
-        Brak wyszukań dla danej frazy
-      </div>
+      <div class="columns small-12">Brak wyszukań dla danej frazy</div>
     </div>
   </div>
 </template>
 <script>
-import PostThumb from '~/components/PostThumb';
-import API from '~/api/connectors/wordpress';
+import PostThumb from "~/components/PostThumb";
+import API from "~/api/connectors/wordpress";
 
 export default {
-  name: 'SearchResults',
+  name: "SearchResults",
   components: {
     PostThumb
   },
   async asyncData({ $axios, route, params }) {
     let api = new API($axios);
-    const posts = await api.getSearchedPosts(params.slug)
-    const pages = await api.getSearchedPages(params.slug)
+    const posts = await api.getSearchedPosts(params.slug);
+    const pages = await api.getSearchedPages(params.slug);
     return {
       posts: posts,
       pages: pages
-    }
+    };
+  },
+  head() {
+    return {
+      title: `Wyniki wyszukiwania dla frazy: ${this.$route.params.slug}`
+    };
   }
-}
+};
 </script>

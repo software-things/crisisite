@@ -91,8 +91,11 @@ add_action('rest_api_init', function () {
     function get_custom_settings_fields()
     {
         $fields = ['headline', 'warning', 'phone', 'email', 'logo', 'bip', 'color_primary', 'color_secondary'];
-        return array_map(function ($field) {
+        $fields = array_map(function ($field) {
             return get_option("czk_{$field}");
         }, array_combine(array_values($fields), $fields));
+        $fields['page_title'] = get_bloginfo('name');
+        $fields['page_description'] = get_bloginfo('description');
+        return $fields;
     }
 });

@@ -33,6 +33,7 @@ button {
 }
 
 a {
+  color: $link;
   text-decoration: none;
   &:active {
     color: lighten($link, 20%);
@@ -157,6 +158,13 @@ body.contrast {
 
   .search-bar__input {
     background: yellow;
+  }
+
+  .header,
+  .header__facilities,
+  .header__formatting--active {
+    background: yellow;
+    border: 1px solid black;
   }
 }
 
