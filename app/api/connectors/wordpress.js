@@ -57,7 +57,7 @@ export default class WordPressApi {
     });
   }
 
-  async getPosts(perPage) {
+  async getPosts(perPage = 100) {
     const RESPONSE = await this.axios.$get(`wp/v2/posts?_embed&per_page=${perPage}`);
     return this._prepareArticles(RESPONSE);
   }
@@ -68,7 +68,7 @@ export default class WordPressApi {
   }
 
   async getPages() {
-    const RESPONSE = await this.axios.$get(`wp/v2/pages?_embed&per_page=99`);
+    const RESPONSE = await this.axios.$get(`wp/v2/pages?_embed&per_page=100`);
     return this._prepareArticles(RESPONSE);
   }
 
@@ -77,18 +77,12 @@ export default class WordPressApi {
     return this._prepareArticles(RESPONSE);
   }
 
-  async getMainMenu() {
-    const RESPONSE = await this.axios.$get(`menus/v1/menus/2`);
-    return this._prepareMenu(RESPONSE)
-  }
-
-  async getFooterMenu() {
-    const RESPONSE = await this.axios.$get(`menus/v1/menus/3`);
-    return this._prepareMenu(RESPONSE)
-  }
-
-  async getAdditionalData() {
-    const RESPONSE = await this.axios.$get(`wp/v2/czk-settings`);
-    return RESPONSE
+  async getCombinedData() {
+    const RESPONSE = await this.axios.$get(`wp/v2/czk-rest`);
+    return {
+      'main-menu': this._prepareMenu(RESPONSE['main-menu']),
+      'footer-menu': this._prepareMenu(RESPONSE['footer-menu']),
+      'settings': RESPONSE['settings']
+    }
   }
 }
