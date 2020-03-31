@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import attachment from "~/mixins/attachment";
 import DateTemplate from "~/components/DateTemplate";
 import BaseForm from "~/components/BaseForm";
 
@@ -39,6 +40,7 @@ export default {
         return import("../components/BaseMap.vue");
       }
     }
-  }
+  },
+  mixins: [attachment]
 };
 </script>

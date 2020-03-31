@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="post">
     <ArticleComponent :post="post" />
   </div>
 </template>
@@ -7,6 +7,7 @@
 <script>
 import { mapGetters } from "vuex";
 import ArticleComponent from "~/components/ArticleComponent";
+import excerpt from "~/mixins/excerpt.js";
 
 export default {
   name: "SinglePost",
@@ -20,11 +21,6 @@ export default {
     post() {
       return this.getPostBySlug(this.$route.params.slug);
     }
-  },
-  head() {
-    return {
-      title: this.post.title
-    };
   },
   mounted() {
     if (this.post) {
@@ -40,6 +36,20 @@ export default {
       ];
       this.$store.commit("BREADCRUMBS", breadcrumbs);
     }
+  },
+  mixins: [excerpt],
+  head() {
+    if (!this.post) return this.$router.push({ path: `/error` });
+    return {
+      title: this.post.title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.excerpt(this.post.content)
+        }
+      ]
+    };
   }
 };
 </script>

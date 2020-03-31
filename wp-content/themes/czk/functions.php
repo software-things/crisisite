@@ -8,3 +8,24 @@ function czk_themes_assets()
 }
 
 add_action('wp_enqueue_scripts', 'czk_themes_assets');
+
+register_nav_menus([
+    'main-menu' => 'Nawigacja',
+    'footer-menu' => 'Nawigacja w stopce'
+]);
+
+add_theme_support('post-thumbnails');
+
+add_action('admin_menu', function() {
+    remove_menu_page('edit-comments.php');
+});
+
+add_action('wp_before_admin_bar_render', function() {
+    global $wp_admin_bar;
+    $wp_admin_bar->remove_menu('comments');
+});
+
+function remove_comment_support() {
+    remove_post_type_support('post', 'comments');
+    remove_post_type_support('page', 'comments');
+}

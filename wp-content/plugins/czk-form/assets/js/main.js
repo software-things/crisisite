@@ -4,12 +4,16 @@ const app = new Vue({
         this.emptyField = Object.assign({}, this.field);
     },
     mounted() {
-      if (form_json.length > 20) {
-          this.fields = JSON.parse(form_json).fields;
-          this.fields.map(field => {
-              this.renderField(field);
-          });
-      }
+        if (form_json.length > 20) {
+            this.fields = JSON.parse(form_json).fields;
+            if (typeof this.fields !== 'string') {
+                this.fields.map(field => {
+                    this.renderField(field);
+                });
+            } else {
+                this.fields = [];
+            }
+        }
     },
     data: {
         edit: false,

@@ -1,4 +1,4 @@
-version: '3.3'
+version: '3'
 
 services:
   nuxt:
@@ -25,11 +25,12 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     restart: always
+    env_file: .env
     environment:
-      MYSQL_ROOT_PASSWORD: somewordpress
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+      MYSQL_ROOT_PASSWORD: $MYSQL_RPWD
+      MYSQL_DATABASE: $MYSQL_DB
+      MYSQL_USER: $MYSQL_USR
+      MYSQL_PASSWORD: $MYSQL_PWD
 
   wordpress:
     depends_on:
@@ -43,10 +44,11 @@ services:
       - ./wp-content/plugins/czk-map:/var/www/html/wp-content/plugins/czk-map
       - ./wp-content/plugins/czk-settings:/var/www/html/wp-content/plugins/czk-settings
       - ./wp-content/themes/czk:/var/www/html/wp-content/themes/czk
+    env_file: .env
     environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
+      MYSQL_ROOT_PASSWORD: $MYSQL_RPWD
+      MYSQL_DATABASE: $MYSQL_DB
+      MYSQL_USER: $MYSQL_USR
+      MYSQL_PASSWORD: $MYSQL_PWD
 volumes:
     db_data: {}

@@ -17,6 +17,11 @@
       display: flex;
       align-items: center;
       margin: 0 2px;
+
+      &:first-of-type {
+        margin-left: 0;
+      }
+
       img {
         margin-right: 5px;
       }
@@ -25,6 +30,10 @@
         &:hover {
           color: black;
         }
+      }
+
+      &.nuxt-link-exact-active {
+        font-weight: 700;
       }
     }
   }

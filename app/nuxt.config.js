@@ -1,3 +1,6 @@
+import axios from 'axios';
+const baseURL = 'https://czk.softwarethings.pro/wordpress/wp-json/';
+import PurgecssPlugin from 'purgecss-webpack-plugin';
 
 export default {
   mode: 'universal',
@@ -36,7 +39,9 @@ export default {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: [],
+  plugins: [
+    { src: '~/plugins/nuxt-client-init.js', ssr: false }
+  ],
   /*
   ** Nuxt.js dev-modules
   */
@@ -49,7 +54,8 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/style-resources',
     '@nuxtjs/axios',
-    'nuxt-leaflet'
+    'nuxt-leaflet',
+    'nuxt-purgecss'
   ],
   /*
   ** Axios module configuration
@@ -62,10 +68,55 @@ export default {
   ** Build configuration
   */
   build: {
+    extractCSS: true,
     /*
     ** You can extend webpack config here
     */
-    extend(config, ctx) {
+    extend (config, ctx) {
+    }
+  },
+  purgeCSS: {
+    whitelistPatterns: [
+      /attachment/, 
+      /form/,
+      /thumb/
+    ]
+  },
+  generate: {
+    routes: (callback) => {
+      const Crawler = (postType = 'posts', pattern = `/:slug`, excluded = ['strona-glowna']) => {
+        return new Promise((resolve) => {
+          const posts = [];
+          const request = new Promise((r) => {
+            function getAllAvailablePosts(page = 1) {
+              axios.get(`${baseURL}wp/v2/${postType}?per_page=100&page=${page}&_embed`).then((response) => {
+                const total = parseInt(response.headers['x-wp-totalpages'], 10);
+                response.data.forEach((post) => {
+                  if (excluded.includes(post.slug)) return;
+                  posts.push(pattern.replace(':slug', post.slug));
+                });
+                if (page < total) getAllAvailablePosts(page + 1);
+                if (page === total || total === 0) r(posts);
+              });
+            }
+            getAllAvailablePosts();
+          });
+          request.then((response) => {
+            return resolve(response);
+          });
+        });
+      }
+
+      Promise.all([
+        Crawler('posts', `/komunikaty/:slug`),
+        Crawler('pages', `/:slug`)
+      ]).then((crawlers) => {
+        let routes = [];
+        crawlers.forEach((crawler) => {
+          routes = routes.concat(crawler);
+        });
+        callback(null, routes);
+      });
     }
   }
 }

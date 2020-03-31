@@ -16,6 +16,7 @@
     "foundation-sites": "^6.5.3",
     "nuxt": "^2.0.0",
     "nuxt-leaflet": "^0.0.21",
+    "nuxt-purgecss": "^0.2.1",
     "sass-loader": "^8.0.0"
   },
   "devDependencies": {

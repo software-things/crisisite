@@ -15,6 +15,10 @@ export default class WordPressApi {
         external: el.type === 'custom'
       }
 
+      if (el.url === '/') {
+        LINK_OBJ = { ...LINK_OBJ, ...{ slug: '/', external: false } }
+      }
+
       return LINK_OBJ;
     });
   }
@@ -36,7 +40,6 @@ export default class WordPressApi {
   _prepareArticles(RESPONSE) {
     return RESPONSE.map((post) => {
       let transformedPost;
-
       transformedPost = {
         id: post.id,
         title: post.title.rendered,
@@ -50,14 +53,12 @@ export default class WordPressApi {
         form: post.czk_form,
         isItPage: post.type === 'page'
       }
-
       return transformedPost;
     });
-
   }
 
-  async getPosts() {
-    const RESPONSE = await this.axios.$get(`wp/v2/posts?_embed`);
+  async getPosts(perPage = 100) {
+    const RESPONSE = await this.axios.$get(`wp/v2/posts?_embed&per_page=${perPage}`);
     return this._prepareArticles(RESPONSE);
   }
 
@@ -67,7 +68,7 @@ export default class WordPressApi {
   }
 
   async getPages() {
-    const RESPONSE = await this.axios.$get(`wp/v2/pages?_embed`);
+    const RESPONSE = await this.axios.$get(`wp/v2/pages?_embed&per_page=100`);
     return this._prepareArticles(RESPONSE);
   }
 
@@ -76,18 +77,12 @@ export default class WordPressApi {
     return this._prepareArticles(RESPONSE);
   }
 
-  async getMainMenu() {
-    const RESPONSE = await this.axios.$get(`menus/v1/menus/2`);
-    return this._prepareMenu(RESPONSE)
-  }
-
-  async getFooterMenu() {
-    const RESPONSE = await this.axios.$get(`menus/v1/menus/3`);
-    return this._prepareMenu(RESPONSE)
-  }
-
-  async getAdditionalData() {
-    const RESPONSE = await this.axios.$get(`wp/v2/czk-settings`);
-    return RESPONSE
+  async getCombinedData() {
+    const RESPONSE = await this.axios.$get(`wp/v2/czk-rest`);
+    return {
+      'main-menu': this._prepareMenu(RESPONSE['main-menu']),
+      'footer-menu': this._prepareMenu(RESPONSE['footer-menu']),
+      'settings': RESPONSE['settings']
+    }
   }
 }
