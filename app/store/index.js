@@ -26,21 +26,21 @@ export const state = () => ({
 export const actions = {
   async nuxtServerInit({ commit }) {
     let api = new API(this.$axios);
-
+    const combinedData = await api.getCombinedData();
     commit('SET_POSTS', await api.getPosts(10));
     commit('SET_PAGES', await api.getPages());
-    commit('SET_MAIN_MENU', await api.getMainMenu());
-    commit('SET_FOOTER_MENU', await api.getFooterMenu());
-    commit('SET_ADDITIONAL_DATA', await api.getAdditionalData());
+    commit('SET_MAIN_MENU', combinedData['main-menu']);
+    commit('SET_FOOTER_MENU', combinedData['footer-menu']);
+    commit('SET_ADDITIONAL_DATA', combinedData['settings']);
   },
   async nuxtClientInit(vuex, app) {
     let api = new API(app.$axios);
-    
+    const combinedData = await api.getCombinedData();
     vuex.commit('SET_POSTS', await api.getPosts());
     vuex.commit('SET_PAGES', await api.getPages());
-    vuex.commit('SET_MAIN_MENU', await api.getMainMenu());
-    vuex.commit('SET_FOOTER_MENU', await api.getFooterMenu());
-    vuex.commit('SET_ADDITIONAL_DATA', await api.getAdditionalData());
+    vuex.commit('SET_MAIN_MENU', combinedData['main-menu']);
+    vuex.commit('SET_FOOTER_MENU', combinedData['footer-menu']);
+    vuex.commit('SET_ADDITIONAL_DATA', combinedData['settings']);
   }
 }
 
