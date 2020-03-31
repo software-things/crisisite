@@ -54,7 +54,7 @@ export default {
     margin: 0;
 
     @include desktop {
-      height: 65px;
+      height: 90px;
       font-size: rem(22px);
     }
   }
@@ -72,7 +72,7 @@ export default {
 
   &__excerpt {
     @include desktop {
-      height: 90px;
+      height: 100px;
       overflow: hidden;
     }
   }
