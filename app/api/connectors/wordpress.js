@@ -57,8 +57,8 @@ export default class WordPressApi {
     });
   }
 
-  async getPosts() {
-    const RESPONSE = await this.axios.$get(`wp/v2/posts?_embed&per_page=99`);
+  async getPosts(perPage) {
+    const RESPONSE = await this.axios.$get(`wp/v2/posts?_embed&per_page=${perPage}`);
     return this._prepareArticles(RESPONSE);
   }
 

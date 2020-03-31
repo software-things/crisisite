@@ -22,7 +22,7 @@
         <div class="columns small-12 footer__authors">
           Designed by
           <a href="https://kavastudio.pl/" target="_blank">
-            <img src="~assets/img/kava.svg" class="footer__kava" alt="Logo KAVA Studio">
+            <img src="~assets/img/kava.svg" class="footer__kava" alt="Logo KAVA KAVA 360">
           </a>
           Developed by
           <a href="https://softwarethings.pro/" target="_blank">

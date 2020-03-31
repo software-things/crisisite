@@ -27,7 +27,7 @@ export const actions = {
   async nuxtServerInit({ commit }) {
     let api = new API(this.$axios);
 
-    commit('SET_POSTS', await api.getPosts());
+    commit('SET_POSTS', await api.getPosts(10));
     commit('SET_PAGES', await api.getPages());
     commit('SET_MAIN_MENU', await api.getMainMenu());
     commit('SET_FOOTER_MENU', await api.getFooterMenu());
