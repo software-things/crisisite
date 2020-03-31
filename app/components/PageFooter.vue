@@ -18,6 +18,18 @@
         </ul>
       </div>
     </div>
+      <div class="row">
+        <div class="columns small-12 footer__authors">
+          Designed by
+          <a href="https://kavastudio.pl/" target="_blank">
+            <img src="~assets/img/kava.svg" class="footer__kava" alt="Logo KAVA KAVA 360">
+          </a>
+          Developed by
+          <a href="https://softwarethings.pro/" target="_blank">
+            <img src="~assets/img/st.svg" class="footer__st" alt="Logo Software Things">
+          </a>
+        </div>
+      </div>
   </footer>
 </template>
 
@@ -75,6 +87,24 @@ export default {
     @include desktop {
       text-align: right;
     }
+  }
+
+  &__kava {
+    height: 11px;
+    transform: translateY(-2px);
+    padding: 0 5px;
+  }
+
+  &__st {
+    height: 18px;
+    margin-left: 5px;
+  }
+
+  &__authors {
+    font-size: rem(14px);
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
   }
 }
 </style>
