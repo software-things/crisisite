@@ -31,6 +31,10 @@
           color: black;
         }
       }
+
+      &.nuxt-link-exact-active {
+        font-weight: 700;
+      }
     }
   }
 </style>
