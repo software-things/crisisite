@@ -17,11 +17,9 @@ function czk_assets()
     if (strstr($_SERVER['REQUEST_URI'], 'wp-admin/post-new.php') || strstr($_SERVER['REQUEST_URI'], 'wp-admin/post.php')) {
         wp_enqueue_style('leaflet', '//unpkg.com/leaflet@1.6.0/dist/leaflet.css');
         wp_enqueue_style('geocoder', '//unpkg.com/esri-leaflet-geocoder@2.3.2/dist/esri-leaflet-geocoder.css');
-
         wp_enqueue_script('leaflet', '//unpkg.com/leaflet@1.6.0/dist/leaflet.js', [], false, true);
         wp_enqueue_script('esri-leaflet', '//unpkg.com/esri-leaflet@2.3.3/dist/esri-leaflet.js', [], false, true);
         wp_enqueue_script('esri-leaflet-geocoder', '//unpkg.com/esri-leaflet-geocoder@2.3.2/dist/esri-leaflet-geocoder.js', [], false, true);
-
         wp_enqueue_script('main', plugin_dir_url(__FILE__) . 'assets/js/main.js?t=' . time(), ['jquery'], false, true);
     }
 }

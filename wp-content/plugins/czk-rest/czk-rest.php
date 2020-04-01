@@ -37,8 +37,8 @@ add_action('rest_api_init', function () {
  * Add Created Endpoint to Cache:
  */
 function wprc_add_czk_rest_endpoint($allowed_endpoints) {
-  if (!isset($allowed_endpoints['wp/v2']) || !in_array('czk-settings', $allowed_endpoints['wp/v2'])) {
-    $allowed_endpoints['wp/v2'][] = 'czk-settings';
+  if (!isset($allowed_endpoints['wp/v2']) || !in_array('czk-rest', $allowed_endpoints['wp/v2'])) {
+    $allowed_endpoints['wp/v2'][] = 'czk-rest';
   }
   return $allowed_endpoints;
 }

@@ -42,7 +42,6 @@ function czk_form_render($post)
 {
     $json = get_post_meta($post->ID, 'czk_form', true);
     $data = json_decode($json, true);
-    $json = addslashes(json_encode($data));
     echo "<script>const form_json = '{$json}';</script>";
     echo '<label for="form-headline">Nagłówek formularza:</label><br><input type="text" id="form-headline" style="margin: 10px 0 30px; width: 100%" value="' . (isset($data['headline']) ? $data['headline'] : '') . '">';
     echo file_get_contents(plugin_dir_path(__FILE__) . 'assets/template/form-builder.html');

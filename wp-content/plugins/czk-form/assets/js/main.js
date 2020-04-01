@@ -6,7 +6,7 @@ const app = new Vue({
     mounted() {
         if (form_json.length > 20) {
             this.fields = JSON.parse(form_json).fields;
-            if (typeof this.fields !== 'string') {
+            if (this.fields && typeof this.fields !== 'string') {
                 this.fields.map(field => {
                     this.renderField(field);
                 });
