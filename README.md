@@ -33,6 +33,6 @@ $ docker-compose up --build -d
 
 ## Links
 
-*Dockerhub image* [https://hub.docker.com/r/softwarethings/crisisite](https://hub.docker.com/r/softwarethings/crisisite)
+*Dockerhub image:* [https://hub.docker.com/r/softwarethings/crisisite](https://hub.docker.com/r/softwarethings/crisisite)
 
-*Demo* [https://czk.softwarethings.pro](https://czk.softwarethings.pro)
+*Reallife implementation:* [https://koronawirus.katowice.eu](https://koronawirus.katowice.eu)
